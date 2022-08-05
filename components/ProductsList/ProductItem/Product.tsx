@@ -1,26 +1,52 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
+import {motion} from 'framer-motion'
+import { useUI } from '../../../contexts/ui.context'
 
-type ImageProps = {
-    image_src: string
+
+type DataProps = {
+    id: number,
+    title: string,
+    description: string,
+    price: number,
+    img: string
 }
 
 
-function Product(props: ImageProps) {
+function Product({ data }: {data: DataProps}) {
+
+    const [isHover, setHover] = useState<boolean>(false)
+
+    const { openModal, setModalView, setModalData } = useUI();
+
+
+	function handlePopupView() {
+		setModalData({ data: data });
+		setModalView("PRODUCT_VIEW");
+		return openModal();
+	}
 
   return (
-    <div className='w-[250px] h-[350px] relative cursor-pointer' onClick={() => console.log('hello')}>
+    <motion.div layout className='w-[250px] h-[350px] relative cursor-pointer' onClick={handlePopupView} id={`${data.id}`} onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <div className='absolute bottom-0 left-0 z-1 w-[100%] h-[80%] bg-[#252836] rounded-lg '>
         </div>
         <div className='w-[100%] h-[auto] flex flex-col items-center justify-center relative z-10'>
-            <Image src={props.image_src} height={200} width={200}/>
+            <motion.div animate={isHover ? {rotate: [0, 20, 0 ,-20, 0]} : {}} transition={{duration: 0.3}}>
+                <Image src={data.img} height={200} width={200}/>
+            </motion.div>
             <div className='w-[100%] h-auto p-[24px] text-center'>
-                <h2 className='text-[white] text-center'>Spicy seasoned seafood noodles</h2>
-                <div className='text-[white] my-[5px]'>$ 2.5</div>
+                <h2 className='text-[white] text-center'>{data.title}</h2>
+                <div className='text-[white] my-[5px]'>$ {data.price}</div>
                 <p className='text-slate-400'>20 Bowls available</p>
+                {/* <div className='flex justify-around items-center'>
+                    <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
+                    <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
+                    <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
+                    <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
+                </div> */}
             </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

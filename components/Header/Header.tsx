@@ -1,11 +1,24 @@
 import React from 'react'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon } from '@heroicons/react/outline'
+
+import { useUI } from '../../contexts/ui.context'
 import { GoBell } from 'react-icons/go'
 import { BsSearch } from 'react-icons/bs'
+import {FiShoppingCart} from 'react-icons/fi'
+import { Badge } from '../Badge'
 
 
 
 function Header() {
+
+    const { openDrawer } = useUI();
+
+
+	function handleDrawerView() {
+		return openDrawer();
+	}
+
+
   return (
     <header className='w-[100%] h-[auto] flex items-center justify-between'>
         <div className="user-info text-[white]">
@@ -20,11 +33,13 @@ function Header() {
         <div className="user-ui mx-20px flex gap-5">
             <div className='relative cursor-pointer'>
                 <GoBell size={30} color={'white'} />
-                <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[green] rounded-full leading-none w-5 h-5'>2</div>
+                <Badge bg='green' textColor='white' content={2} />
+                {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[green] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
-            <div className='relative cursor-pointer'>
-                <BsSearch size={30} color={'white'} />
-                <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div>
+            <div className='relative cursor-pointer' onClick={handleDrawerView}>
+                <FiShoppingCart size={30} color={'white'} />
+                <Badge bg='red' textColor='white' content={10} />
+                {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
         </div>
     </header>

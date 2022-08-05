@@ -19,5 +19,14 @@
     .input{
         @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545]
     }
+
+    .payment.active{
+        @apply w-[130px] h-[70px] rounded-md bg-[#7f7f7f39] border-[1px] border-[#9a9a9a82] text-white flex flex-col items-center justify-center
+    }
+
+    .payment{
+        @apply w-[130px] h-[70px] rounded-md bg-[#7f7f7f00] border-[1px] border-[#9a9a9a82] text-white flex flex-col items-center justify-center
+    }
+
 }
 
