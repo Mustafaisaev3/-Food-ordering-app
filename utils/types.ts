@@ -7,3 +7,13 @@ export type ProductType = {
     img: string, 
     quantity: number
   };
+
+export type OrderStatus = 'new' | 'preparation' | 'delivery' | 'done' | 'rejected'
+
+export type OrderType = {
+  items: ProductType[],
+  total_price: number,
+  order_id: string,
+  date: Date,
+  status: OrderStatus
+}

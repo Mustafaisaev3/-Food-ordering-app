@@ -13,11 +13,13 @@ import ManagedModal from '../components/UI/Modal/managet-modal'
 import ManagedDrawer from '../components/UI/Drawer/managed-drawer'
 
 import { ManagedUIContext } from '../contexts/ui.context'
+import { OrderReducer } from '../store/reducers/orderReducers'
 
 
 const reducers = combineReducers({
   category: CategoryReducer,
-  cart: CartReducer
+  cart: CartReducer,
+  orders: OrderReducer
 })
 const store = createStore(reducers)
 

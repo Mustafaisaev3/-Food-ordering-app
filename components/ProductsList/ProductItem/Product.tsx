@@ -31,8 +31,8 @@ function Product({ data }: {data: DataProps}) {
         <div className='absolute bottom-0 left-0 z-1 w-[100%] h-[80%] bg-[#252836] rounded-lg '>
         </div>
         <div className='w-[100%] h-[auto] flex flex-col items-center justify-center relative z-10'>
-            <motion.div animate={isHover ? {rotate: [0, 20, 0 ,-20, 0]} : {}} transition={{duration: 0.3}}>
-                <Image src={data.img} height={200} width={200}/>
+            <motion.div animate={isHover ? {rotate: [0, 20, 0 ,-20, 0]} : {}} transition={{duration: 0.3}} className="flex mb-3 md:mb-3.5">
+                <Image src={data.img} height={200} width={200} />
             </motion.div>
             <div className='w-[100%] h-auto p-[24px] text-center'>
                 <h2 className='text-[white] text-center'>{data.title}</h2>
