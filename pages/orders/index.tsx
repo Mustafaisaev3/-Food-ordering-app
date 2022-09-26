@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderGrid from '../../components/Order/order-grid'
+import OrderGrid from '../../components/Order/OrderGrid'
 
 const Orders = () => {
   return (

@@ -13,7 +13,7 @@ export type OrderStatus = 'new' | 'preparation' | 'delivery' | 'done' | 'rejecte
 export type OrderType = {
   items: ProductType[],
   total_price: number,
-  order_id: string,
-  date: Date,
+  order_id: number,
+  date: number,
   status: OrderStatus
 }

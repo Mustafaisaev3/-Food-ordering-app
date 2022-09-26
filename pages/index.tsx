@@ -5,9 +5,12 @@ import ManagedModal from '../components/UI/Modal/managet-modal'
 import ProductsList from '../components/ProductsList/ProductsList'
 import Alert from '../components/UI/Alert/Alert'
 import Dropdown from '../components/UI/Dropdown/Dropdown'
+import { useSelector } from 'react-redux'
+import { selectOrders } from '../store/ducks/orders/selectors'
 
 
 const Home = () => {
+  console.log(useSelector(selectOrders))
   return (
     <div className='py-[24px]'>
       {/* <div className='w-[100%] h-[80px] flex items-center justify-between'>

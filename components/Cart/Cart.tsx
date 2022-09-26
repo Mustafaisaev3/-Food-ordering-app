@@ -7,11 +7,13 @@ import { useSelector } from 'react-redux'
 
 import drinks from '../../data/products/drinks'
 import { AnimatePresence } from 'framer-motion'
+import { selectCartItems } from '../../store/ducks/cart/selectors'
 
 function Cart() {
   const {closeDrawer} = useUI()
   const [isEmpty, setIsEmpty] = useState<boolean>(false)
-  const cartItems = useSelector((state) => state.cart.items)
+//   const cartItems = useSelector((state) => state.cart.items)
+  const cartItems = useSelector(selectCartItems)
 //   console.log(cartItems, 'reducer')
   const [isCheckout, setIsCheckout] = useState(false)
   

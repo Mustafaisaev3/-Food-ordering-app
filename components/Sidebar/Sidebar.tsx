@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon, BellIcon } from '@heroicons/react/outline'
 import { motion } from 'framer-motion'
 import MenuIconContainer from './MenuIconContainer'
@@ -13,15 +14,21 @@ function Sidebar() {
         <div className='flex flex-col items-center'>
             
             <MenuIconContainer>
-                <div className='text-[30px] text-[white]'>
-                    LOGO
-                </div>
+                <Link href='/'>
+                    <div className='text-[30px] text-[white]'>
+                        LOGO
+                    </div>
+                </Link>  
             </MenuIconContainer>
             <MenuIconContainer>
-                <HomeIcon color='white' className='h-[50px] w-[50px] '  />
+                <Link href='/'>
+                    <HomeIcon color='white' className='h-[50px] w-[50px] '  />
+                </Link>
             </MenuIconContainer>
             <MenuIconContainer>
-                <ClockIcon color='white' className='h-[50px] w-[50px]' />
+                <Link href='/orders'>
+                    <ClockIcon color='white' className='h-[50px] w-[50px]' />
+                </Link>
             </MenuIconContainer>
             <MenuIconContainer>
                 <MailIcon color='white' className='h-[50px] w-[50px]' />

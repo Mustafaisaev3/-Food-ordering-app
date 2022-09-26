@@ -13,15 +13,15 @@ import ManagedModal from '../components/UI/Modal/managet-modal'
 import ManagedDrawer from '../components/UI/Drawer/managed-drawer'
 
 import { ManagedUIContext } from '../contexts/ui.context'
-import { OrderReducer } from '../store/reducers/orderReducers'
+import { store } from '../store/store'
 
 
-const reducers = combineReducers({
-  category: CategoryReducer,
-  cart: CartReducer,
-  orders: OrderReducer
-})
-const store = createStore(reducers)
+// const reducers = combineReducers({
+//   category: CategoryReducer,
+//   cart: CartReducer,
+//   orders: OrderReducer
+// })
+// const store = createStore(reducers)
 
 
 function MyApp({ Component, pageProps }: AppProps) {

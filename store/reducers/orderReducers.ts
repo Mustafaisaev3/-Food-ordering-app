@@ -9,6 +9,7 @@ type OrderAction = {
 export const OrderReducer = (state = [], action: OrderAction) => {
     switch (action.type) {
         case CREATE_ORDER:
+            console.log('order reducer')
             return [
                 ...state,
                 action.order

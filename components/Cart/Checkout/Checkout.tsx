@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import { fadeInRight } from '../../../utils/motion/fade-in-right'
 import { useFormik } from 'formik'
+import { addOrder } from '../../../store/ducks/orders/actions'
+import { OrderType } from '../../../utils/types'
+
 
 // React Icons
 import { BsCreditCardFill } from 'react-icons/bs'
@@ -9,6 +13,9 @@ import { GiWallet } from 'react-icons/gi'
 import {RiPaypalLine} from 'react-icons/ri'
 import {HiOutlineArrowNarrowRight} from 'react-icons/hi'
 import Input from '../../UI/Input'
+import Switch from '../../UI/Switch/Switch'
+import Map from '../GoogleMap/Map'
+
 
 type CheckoutProps = {
     closeCheckout: (value: boolean) => void
@@ -43,7 +50,8 @@ const PaymentComponent = (payment, active) => {
 
 const Checkout = ({closeCheckout}: CheckoutProps) => {
 
-  const [swithActive, setSwitchActive] = useState(false)
+  const [showDelivery, setShowDelivery] = useState(false)
+  const [showMap, setShowMap] = useState(false)
 
   const [paymentMethod, setPaymentMethod] = useState<PaymantMethodTypes>('CreditCard')
 
@@ -82,7 +90,18 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
       }
   })
 
-  console.log(touched, 'touthed')
+  const cartItems = useSelector((state) => state.cart.items)
+  const dispatch = useDispatch()
+
+  const order: OrderType = {
+    items: cartItems,
+    total_price: 200,
+    order_id: new Date().getTime(),
+    date: new Date().getTime(),
+    status: 'new'
+  }
+
+  console.log(useSelector(state => state.orders))
 
   return (
     <motion.div
@@ -91,8 +110,9 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
         animate="to"
         exit="from"
         variants={fadeInRight(0.50)}
-        className="lg:relative w-full lg:w-[450px] z-50 absolute right-0 top-0 lg:block"
+        className="lg:relative w-full lg:w-[450px] overflow-hidden z-50 absolute right-0 top-0 lg:block"
     >
+        {showMap && <Map />}
         <div className='flex flex-col justify-between w-full h-screen rounded-tl-lg rounded-bl-lg bg-[#252836] '>
             <div className='flex justify-between items-center ps-[28px] border-b border-gray-700' >
                 <div className='text-[25px] pl-[28px] text-[white]'>Paymant</div>
@@ -145,10 +165,10 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                         <div className='h-auto w-full py-[30px] '>
                             <h2 className='text-[25px] text-white'>Delivery</h2>
                             <div className='relative'>
-                                <div className={`${swithActive ? '' : 'absolute'} w-[100%] h-[100%] z-30`  }></div>
-                                <div className= {`${swithActive ? '' : 'opacity-20'}`  }>
-                                    <div className='flex flex-col pt-3'>
-                                        <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
+                                <div className={`${showDelivery ? '' : 'absolute'} w-[100%] h-[100%] z-30`  }></div>
+                                <div className= {`${showDelivery ? '' : 'opacity-20'}`  }>
+                                    <div className='flex flex-col pt-3' onClick={() => setShowMap(!showMap)}>
+                                        <Input id='map' name='Map' label='Map' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
                                         {/* {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null} */}
                                     </div>
                                     <div className='flex flex-col pt-3'>
@@ -157,18 +177,16 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='pt-20px'>
-                                <div className={`w-[50px] h-[25px] rounded-[40px] bg-[#bdbdbd] flex items-center transition-all duration-300 p-[7px] cursor-pointer ${swithActive ? 'bg-[#17ff17] justify-end' : 'bg-[#bdbdbd] justify-start'}`} onClick={() => setSwitchActive(!swithActive)}>
-                                    <div className='w-[15px] h-[15px] rounded-full bg-white transition-all duration-300'></div>
-                                    {/* <motion.div className='w-[20px] h-[20px] rounded-full bg-white' animate={{x: swithActive ? 35 : 0}}></motion.div> */}
-                                    {/* <motion.div className='w-[30px] h-[30px] rounded-full bg-white' animate={{x: swithActive ? '-100%' : '100%'}}></motion.div> */}
-                                </div>
-                            </div>
+                            <Switch switchStatus={showDelivery} setSwicthSatus={setShowDelivery} />
                         </div>
                         {/* <div className='flex justify-between flex-col lg:flex-row md:gap-[10px] items-center pt-[10px]'> */}
                         <div className='flex flex-col pt-10 lg:flex-row space-y-4 lg:space-y-0'>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer bg-[#EA6969] rounded-lg w-full h-[50px]'>
-                                <div className='text-[20px] text-[white]'>Checkout</div>
+                                <div className='text-[20px] text-[white]' onClick={() => {
+                                    // dispatch(createOrder(order))
+                                    dispatch(addOrder(order))
+                                    console.log('addOrder')
+                                }}>Checkout</div>
                             </button>
                             <button className='flex justify-center items-center p-[24px] cursor-pointer border-[1px] border-[#EA6969] rounded-lg w-full h-[50px] lg:ml-3'>
                                 <div className='text-[20px] text-[#EA6969]'>Cancel</div>

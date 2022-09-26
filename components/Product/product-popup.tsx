@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useUI } from "../../contexts/ui.context";
 import {motion} from 'framer-motion'
 import { useDispatch } from "react-redux";
-import { increaseCart } from "../../store/actions/cartActions";
 import { animationVariants } from "../../utils/motion/size-animation-variants";
 import Counter from "../Common/Counter";
+import { increaseCart, addToCart } from "../../store/ducks/cart/action";
 
 
 export default function ProductPopup() {
@@ -73,7 +73,8 @@ export default function ProductPopup() {
 					<div className="flex items-center justify-between">
 						<Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
 						<div className="w-[200px] h-[60px] p-[20px] text-white text-center rounded-md bg-[#EA6969] cursor-pointer" onClick={() => { 
-							dispatch(increaseCart({...data}, count))
+							// dispatch(increaseCart({...data}, count))
+							dispatch(addToCart({...data}, count))
 							// console.log('increase')
 						}}>Add to cart</div>
 					</div>

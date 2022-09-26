@@ -2,27 +2,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import {ProductType} from '../../utils/types'
 
-import { addToCart, deleteFromCart } from '../../store/actions/cartActions'
-
 import {IoIosCloseCircle} from 'react-icons/io'
 import {MdDeleteForever} from 'react-icons/md'
 
-import { motion } from 'framer-motion'
-import { fadeInOut } from '../../utils/motion/fade-in-out'
 import { useDispatch } from 'react-redux'
+import { addToCart, deleteFromCart } from '../../store/ducks/cart/action'
 
-// type ProductType = {
-// 	id: number,
-//     title: string,
-//     description: string,
-//     price: number,
-//     category: string,
-//     img: string, 
-//     quantity: number
-// }
 
 function CartItem({item}: {item: ProductType}) {
-	const productCountInputRef = useRef()
+	const productCountInputRef = useRef(null)
 	const dispatch = useDispatch()
 	const [productCount, setProductCount] = useState(item.quantity)
 
@@ -30,7 +18,7 @@ function CartItem({item}: {item: ProductType}) {
 		dispatch(addToCart(item, productCount))
 	}, [productCount])
 
-	console.log(productCountInputRef?.current?.value)
+	// console.log(productCountInputRef?.current?.value)
 	return (
 		<div className='py-[20px]'>
 			<div>
