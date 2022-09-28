@@ -6,16 +6,16 @@ import {IoIosCloseCircle} from 'react-icons/io'
 import {MdDeleteForever} from 'react-icons/md'
 
 import { useDispatch } from 'react-redux'
-import { addToCart, deleteFromCart } from '../../store/ducks/cart/action'
+import { addToCart, deleteFromCart, increaseCart } from '../../store/ducks/cart/action'
 
 
 function CartItem({item}: {item: ProductType}) {
 	const productCountInputRef = useRef(null)
 	const dispatch = useDispatch()
-	const [productCount, setProductCount] = useState(item.quantity)
+	const [productCount, setProductCount] = useState<number>(item.quantity)
 
 	useEffect(() => {
-		dispatch(addToCart(item, productCount))
+		dispatch(increaseCart(item, productCount))
 	}, [productCount])
 
 	// console.log(productCountInputRef?.current?.value)
@@ -31,7 +31,7 @@ function CartItem({item}: {item: ProductType}) {
 						</div>
 					</div>
 					<div className="w-[20%] flex justify-end">
-						<input ref={productCountInputRef} type="text" className='flex items-center rounded-[5px] p-[10px] outline-none text-white text-center bg-[#2D303E] w-[60px] h-full' onChange={() => setProductCount(productCountInputRef?.current?.value)} value={productCount} placeholder='0'/>
+						<input ref={productCountInputRef} type="text" className='flex items-center rounded-[5px] p-[10px] outline-none text-white text-center bg-[#2D303E] w-[60px] h-full' onChange={() => setProductCount(parseInt(productCountInputRef?.current?.value))} value={productCount} placeholder='0'/>
 					</div>
 					<div className='w-[20%] text-[20px] text-white text-center'>$ {item.price * productCount}</div>
 				</div>

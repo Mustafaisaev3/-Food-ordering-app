@@ -5,6 +5,7 @@ import { ProductType } from "../../../../utils/types"
 export enum CartActionsType {
     ADD_TO_CART = 'cart/ADD_TO_CART',
     INCREASE_CART = 'cart/INCREASE_CART',
+    CLEAR_CART = 'cart/CLEAR_CART',
     DELETE_FROM_CART = 'cart/DELETE_FROM_CART',
 }
 
@@ -26,6 +27,10 @@ export interface DeleteFromCartActionInterface extends Action<CartActionsType>{
     item: ProductType,
 }
 
+export interface ClearCartActionInterface extends Action<CartActionsType>{
+    type: CartActionsType.CLEAR_CART
+}
 
 
-export type CartActions = AddToCartActionInterface |  IncreaseCartActionInterface | DeleteFromCartActionInterface
+
+export type CartActions = AddToCartActionInterface |  IncreaseCartActionInterface | DeleteFromCartActionInterface | ClearCartActionInterface

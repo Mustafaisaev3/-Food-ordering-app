@@ -14,6 +14,7 @@ export default function ProductPopup() {
 		modalData: { data },
 		closeModal,
 		openCart,
+		addToast
 	} = useUI();
 
 	const [size, setSize] = useState<string>('s')
@@ -73,9 +74,8 @@ export default function ProductPopup() {
 					<div className="flex items-center justify-between">
 						<Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
 						<div className="w-[200px] h-[60px] p-[20px] text-white text-center rounded-md bg-[#EA6969] cursor-pointer" onClick={() => { 
-							// dispatch(increaseCart({...data}, count))
 							dispatch(addToCart({...data}, count))
-							// console.log('increase')
+							addToast({id: Math.random(), toastType: 'success', text: `Товар добавлен в корзину: ${data.title}`})
 						}}>Add to cart</div>
 					</div>
 					{/* <div className="p-[20px] mx-[20px] bg-white rounded-md cursor-pointer" onClick={() => setSize('s')}>s</div>

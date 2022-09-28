@@ -42,7 +42,7 @@ function Cart() {
                             </div>
                             <div className=''>
                                 {cartItems.map((e) => {
-                                    return <CartItem item={e} />
+                                    return <CartItem item={e} key={Math.random()}/>
                                 })}
                             </div>
                         </div>

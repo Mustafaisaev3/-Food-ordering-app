@@ -15,6 +15,8 @@ import {HiOutlineArrowNarrowRight} from 'react-icons/hi'
 import Input from '../../UI/Input'
 import Switch from '../../UI/Switch/Switch'
 import Map from '../GoogleMap/Map'
+import { clearCart } from '../../../store/ducks/cart/action'
+import { useUI } from '../../../contexts/ui.context'
 
 
 type CheckoutProps = {
@@ -49,6 +51,7 @@ const PaymentComponent = (payment, active) => {
 }
 
 const Checkout = ({closeCheckout}: CheckoutProps) => {
+  const { closeDrawer, addToast } = useUI()
 
   const [showDelivery, setShowDelivery] = useState(false)
   const [showMap, setShowMap] = useState(false)
@@ -63,7 +66,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
         CVV: '',
       },
       onSubmit(values) {
-        // console.log(values)
+        console.log(values)
       },
       validate (values) {
         let errors = {
@@ -101,7 +104,12 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
     status: 'new'
   }
 
-  console.log(useSelector(state => state.orders))
+  const hundleSubmit = (order: OrderType) => {
+    dispatch(addOrder(order))
+    closeDrawer()
+    dispatch(clearCart())
+    addToast({id: Math.random(), toastType: 'success', text: 'Заказ оформлен'})
+  }
 
   return (
     <motion.div
@@ -142,20 +150,20 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                     </div>
                     <form onSubmit={handleSubmit} className='w-full h-full flex flex-col justify-between'>
                         <div>
-                            <div className='flex flex-col pt-9'>
+                            {/* <div className='flex flex-col pt-9'> */}
                                 <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
                                 {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null}
-                            </div>
-                            <div className='flex flex-col pt-9'>
+                            {/* </div> */}
+                            {/* <div className='flex flex-col pt-9'> */}
                                 <Input id='cardNumber' name='cardNumber' onBlur={handleBlur} label='Card number' value={values.cardNumber} onChange={handleChange} classes={touched.cardNumber && errors.cardNumber ? 'border-[1px] border-red-600' : ''}/>
                                 {touched.cardNumber && errors.cardNumber ? <div className='text-[red]'>{errors.cardNumber}</div> : null}
-                            </div>
+                            {/* </div> */}
                             <div className='flex flex-col lg:flex-row '>
-                                <div className='md:pt-5 sm:pt-5 pt-10'>
+                                <div className=''>
                                     <Input id='expirationDate' name='expirationDate' onBlur={handleBlur} label='Expiration Date' value={values.expirationDate} onChange={handleChange} classes={touched.expirationDate && errors.expirationDate ? 'border-[1px] border-red-600' : ''} />
                                     {touched.expirationDate && errors.expirationDate ? <div className='text-[red]'>{errors.expirationDate}</div> : null}
                                 </div>
-                                <div className='lg:ml-3 md:pt-5 sm:pt-5'>
+                                <div className='lg:ml-3'>
                                     {/* <Input id='CVV' name='CVV' {...formik.getFieldProps('CVV')} onBlur={formik.handleBlur} value={formik.values.CVV} onChange={formik.handleChange} classes={`w-full ${formik.touched.CVV && formik.errors.CVV ? 'border-[1px] border-red-600' : ''}`} /> */}
                                     <Input id='CVV' maxlength={3} type={"password"} {...getFieldProps('CVV')} label='CVV' classes={`w-full ${touched.CVV && errors.CVV ? 'border-[1px] border-red-600' : ''}`} />
                                     {touched.CVV && errors.CVV ? <div className='text-[red]'>{errors.CVV}</div> : null}
@@ -167,11 +175,11 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                             <div className='relative'>
                                 <div className={`${showDelivery ? '' : 'absolute'} w-[100%] h-[100%] z-30`  }></div>
                                 <div className= {`${showDelivery ? '' : 'opacity-20'}`  }>
-                                    <div className='flex flex-col pt-3' onClick={() => setShowMap(!showMap)}>
+                                    <div className='flex flex-col' onClick={() => setShowMap(!showMap)}>
                                         <Input id='map' name='Map' label='Map' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
                                         {/* {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null} */}
                                     </div>
-                                    <div className='flex flex-col pt-3'>
+                                    <div className='flex flex-col'>
                                         <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
                                         {/* {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null} */}
                                     </div>
@@ -183,9 +191,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                         <div className='flex flex-col pt-10 lg:flex-row space-y-4 lg:space-y-0'>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer bg-[#EA6969] rounded-lg w-full h-[50px]'>
                                 <div className='text-[20px] text-[white]' onClick={() => {
-                                    // dispatch(createOrder(order))
-                                    dispatch(addOrder(order))
-                                    console.log('addOrder')
+                                    hundleSubmit(order)
                                 }}>Checkout</div>
                             </button>
                             <button className='flex justify-center items-center p-[24px] cursor-pointer border-[1px] border-[#EA6969] rounded-lg w-full h-[50px] lg:ml-3'>

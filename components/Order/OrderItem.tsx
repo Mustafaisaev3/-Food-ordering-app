@@ -3,59 +3,19 @@ import { OrderType } from '../../utils/types';
 import {RiUserFill} from 'react-icons/ri'
 import { useUI } from '../../contexts/ui.context';
 import { Order } from '../../store/ducks/orders/contracts/state';
+import useDeliveryTime from '../../hooks/useDeliveryTime';
+import getOrderStatusColor from '../../utils/getOrderStatusColor';
 
 interface OrdersType {
   order: Order
 }
 
 const OrderItem = ({ order }: OrdersType) => {
-
-  const second = 1000,
-  minute = second * 60,
-  hour = minute * 60,
-  day = hour * 24;
-
-  const [distance, setDistance] = useState(0)
-  const [time, setTime] = useState({
-    deliveryHour: 0,
-    deliveryminute: 0, 
-    deliverySeconds: 0
-  })
-
-  const getDeliveryTime = (deliveryMin: number) => {
-    const deliveryMinute = 1000 * 60 * deliveryMin
-    const deliveryOn = order.date + deliveryMinute
-    
-    const now = new Date().getTime(),
-    distance = deliveryOn - now;
-    setDistance(distance)
-
-    let deliveryHour = Math.floor((distance % (day)) / (hour)),
-        deliveryminute = Math.floor((distance % (hour)) / (minute)),
-        deliverySeconds =  Math.floor((distance % (minute)) / second);
-
-    setTime({
-      deliveryHour,
-      deliveryminute, 
-      deliverySeconds
-    })
-  }
-
-  const getStatusColor = (distance = 1000000000) => {
-    distance = distance / 1000 / 60
-    if (distance > 10){
-      return 'green'
-    } else if (distance > 5) {
-      return '#ffc311'
-    } else if (distance < 5) {
-      return 'red'
-    }
- 
-  }
-  
+  const {time, distance,getDeliveryTime} = useDeliveryTime()
+   
   useEffect(() => {
     let timeId = setInterval(() => {
-      getDeliveryTime(15)
+      getDeliveryTime(15, order.date)
     }, 1000)
 
     return function cleanup () {
@@ -100,9 +60,9 @@ const OrderItem = ({ order }: OrdersType) => {
             })}
           </div> */}
           <div className='flex items-end pt-[15px] rounded gap-1'>
-              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliveryHour}</div>              
-              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliveryminute}</div>              
-              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliverySeconds}</div>
+              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getOrderStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliveryHour}</div>              
+              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getOrderStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliveryminute}</div>              
+              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getOrderStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliverySeconds}</div>
           </div>
         </div>
     </div>
@@ -110,5 +70,4 @@ const OrderItem = ({ order }: OrdersType) => {
 }
 
 export default OrderItem
-
 

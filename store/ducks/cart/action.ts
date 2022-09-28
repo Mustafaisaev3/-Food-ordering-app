@@ -1,5 +1,5 @@
 import { ProductType } from "../../../utils/types"
-import { AddToCartActionInterface, CartActionsType, DeleteFromCartActionInterface, IncreaseCartActionInterface } from "./contracts/actionsType"
+import { AddToCartActionInterface, CartActionsType, ClearCartActionInterface, DeleteFromCartActionInterface, IncreaseCartActionInterface } from "./contracts/actionsType"
 
 
 export const addToCart = (item: ProductType, quantity: number): AddToCartActionInterface => {
@@ -20,5 +20,11 @@ export const deleteFromCart = (item: ProductType): DeleteFromCartActionInterface
     return {
         type: CartActionsType.DELETE_FROM_CART,
         item,
+    }
+}
+
+export const clearCart = (): ClearCartActionInterface => {
+    return {
+        type: CartActionsType.CLEAR_CART,
     }
 }

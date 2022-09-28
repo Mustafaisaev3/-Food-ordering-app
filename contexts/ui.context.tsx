@@ -1,9 +1,7 @@
-import React from "react";
-// import { getToken } from "@framework/utils/get-token";
-// import { CartProvider } from "./cart/cart.context";
+import React, { useContext, useReducer } from "react";
+
 
 export interface State {
-  // isAuthorized: boolean;
   displaySidebar: boolean;
   displayFilter: boolean;
   displayModal: boolean;
@@ -14,10 +12,10 @@ export interface State {
   modalData: any;
   drawerView: string | null;
   toastText: string;
+  toastList: []
 }
 
 const initialState = {
-  // isAuthorized: getToken() ? true : false,
   displaySidebar: false,
   displayFilter: false,
   displayModal: false,
@@ -28,7 +26,14 @@ const initialState = {
   drawerView: null,
   modalData: null,
   toastText: "",
+  toastList: []
 };
+
+export type ToastType = {
+  id: number,
+  toastType: string,
+  text: string
+}
 
 type Action =
   | {
@@ -92,7 +97,15 @@ type Action =
   | {
       type: "SET_USER_AVATAR";
       value: string;
-    };
+    }
+  | {
+      type: "ADD_TOAST";
+      toast: ToastType;
+    }
+  | {
+      type: "DELETE_TOAST";
+      id: number;
+    }
 
 type MODAL_VIEWS =
   | "SIGN_UP_VIEW"
@@ -218,11 +231,29 @@ function uiReducer(state: State, action: Action) {
         userAvatar: action.value,
       };
     }
+    case "ADD_TOAST": {
+      const toast = action.toast
+      let newToastList: ToastType[] = []
+      newToastList.unshift(toast)
+
+      return {
+        ...state,
+        toastList: [...state.toastList, ...newToastList]
+      }
+    }
+    case 'DELETE_TOAST':
+      let newToastList = state.toastList.filter((e) => {
+        return action.id !== e.id 
+      })
+      return {
+        ...state,
+        toastList: [...newToastList]
+      }
   }
 }
 
 export const UIProvider: React.FC = (props) => {
-  const [state, dispatch] = React.useReducer(uiReducer, initialState);
+  const [state, dispatch] = useReducer(uiReducer, initialState);
 
   const authorize = () => dispatch({ type: "SET_AUTHORIZED" });
   const unauthorize = () => dispatch({ type: "SET_UNAUTHORIZED" });
@@ -264,6 +295,9 @@ export const UIProvider: React.FC = (props) => {
   const setModalData = (data: any) =>
     dispatch({ type: "SET_MODAL_DATA", data });
 
+  const addToast = (toast: ToastType) => dispatch({type: 'ADD_TOAST', toast})
+  const deleteToast = (id: number) => dispatch({type: 'DELETE_TOAST', id})
+
   const value = React.useMemo(
     () => ({
       ...state,
@@ -289,6 +323,8 @@ export const UIProvider: React.FC = (props) => {
       setDrawerView,
       setUserAvatar,
       setModalData,
+      addToast,
+      deleteToast,
     }),
     [state]
   );
@@ -297,7 +333,7 @@ export const UIProvider: React.FC = (props) => {
 };
 
 export const useUI = () => {
-  const context = React.useContext(UIContext);
+  const context = useContext(UIContext);
   if (context === undefined) {
     throw new Error(`useUI must be used within a UIProvider`);
   }

@@ -14,6 +14,7 @@ import ManagedDrawer from '../components/UI/Drawer/managed-drawer'
 
 import { ManagedUIContext } from '../contexts/ui.context'
 import { store } from '../store/store'
+import ToastList from '../components/toast/ToastList'
 
 
 // const reducers = combineReducers({
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
           <ManagedModal/>
           <ManagedDrawer />
+          <ToastList />
         </Layout>
       </ManagedUIContext>
     </Provider>

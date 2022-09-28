@@ -33,25 +33,50 @@ export const cartReducer = (state = initialState, action: CartActions) => {
 
         case CartActionsType.INCREASE_CART:   
             item.quantity = action.quantity 
+            return state
 
-            if (state.items.length > 0){
-                let filteredItemsArr = state.items.filter((e) => {
-                    return e.id != item.id
-                })
+        case CartActionsType.CLEAR_CART:   
+            return {...state, items: []}
 
-                let targetItemInCart = state.items.find((e) => {
-                    return e.id == item.id
-                })
+            // if (state.items.length > 0){
+            //     let filteredItemsArr = state.items.filter((e) => {
+            //         return e.id != item.id
+            //     })
 
-                if(targetItemInCart){
-                    targetItemInCart.quantity = targetItemInCart.quantity + action.quantity
-                    return {...state, items: [...filteredItemsArr, targetItemInCart]}
-                } else {
-                    return {...state, items: [...state.items, item]}
-                }
-            } else {
-                return {...state, items: [...state.items, item]}
-            };
+            //     let targetItemInCart = state.items.find((e) => {
+            //         return e.id == item.id
+            //     })
+
+            //     if(targetItemInCart){
+            //         targetItemInCart.quantity = targetItemInCart.quantity + action.quantity
+            //         return {...state, items: [...filteredItemsArr, targetItemInCart]}
+            //     } else {
+            //         return {...state, items: [...state.items, item]}
+            //     }
+            // } else {
+            //     return {...state, items: [...state.items, item]}
+            // };
+        // case CartActionsType.INCREASE_CART:   
+        //     item.quantity = action.quantity 
+
+        //     if (state.items.length > 0){
+        //         let filteredItemsArr = state.items.filter((e) => {
+        //             return e.id != item.id
+        //         })
+
+        //         let targetItemInCart = state.items.find((e) => {
+        //             return e.id == item.id
+        //         })
+
+        //         if(targetItemInCart){
+        //             targetItemInCart.quantity = targetItemInCart.quantity + action.quantity
+        //             return {...state, items: [...filteredItemsArr, targetItemInCart]}
+        //         } else {
+        //             return {...state, items: [...state.items, item]}
+        //         }
+        //     } else {
+        //         return {...state, items: [...state.items, item]}
+        //     };
 
         default:
             return state
