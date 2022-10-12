@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import motion from 'framer-motion'
 import { useUI } from '../../contexts/ui.context'
 import ErrorToast from './toastsTypesComponents/ErrorToast'
 import SuccesToast from './toastsTypesComponents/SuccessToast'

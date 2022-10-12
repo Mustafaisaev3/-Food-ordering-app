@@ -5,11 +5,14 @@ export interface State {
   displaySidebar: boolean;
   displayFilter: boolean;
   displayModal: boolean;
+  displayConfirmationModal: boolean;
   displayCart: boolean;
   displayDrawer: boolean;
   displaySearch: boolean;
   modalView: string;
+  confirmationModalView: string;
   modalData: any;
+  confirmationModalData: null | confirmationModalDataType;
   drawerView: string | null;
   toastText: string;
   toastList: []
@@ -19,12 +22,15 @@ const initialState = {
   displaySidebar: false,
   displayFilter: false,
   displayModal: false,
+  displayConfirmationModal: false,
   displayCart: false,
   displayDrawer: false,
   displaySearch: false,
   modalView: "LOGIN_VIEW",
+  confirmationModalView: "CONFIRMATION_MODAL_VIEW",
   drawerView: null,
   modalData: null,
+  confirmationModalData: null,
   toastText: "",
   toastList: []
 };
@@ -34,6 +40,8 @@ export type ToastType = {
   toastType: string,
   text: string
 }
+
+export type confirmationModalDataType = null | {questionText: string, perfomedFunction: () => any}
 
 type Action =
   | {
@@ -83,8 +91,18 @@ type Action =
       type: "CLOSE_MODAL";
     }
   | {
+      type: "OPEN_CONFIRMATION_MODAL";
+    }
+  | {
+      type: "CLOSE_CONFIRMATION_MODAL";
+    }
+  | {
       type: "SET_MODAL_VIEW";
       view: MODAL_VIEWS;
+    }
+  | {
+      type: "SET_CONFIRMATION_MODAL_VIEW";
+      view: CONFIRMATION_MODAL_VIEWS;
     }
   | {
       type: "SET_DRAWER_VIEW";
@@ -92,6 +110,10 @@ type Action =
     }
   | {
       type: "SET_MODAL_DATA";
+      data: any;
+    }
+  | {
+      type: "SET_CONFIRMATION_MODAL_DATA";
       data: any;
     }
   | {
@@ -111,7 +133,10 @@ type MODAL_VIEWS =
   | "SIGN_UP_VIEW"
   | "LOGIN_VIEW"
   | "ORDER_POPUP"
+  | "CONFIRMATION_MODAL_VIEW"
   | "PRODUCT_VIEW";
+type CONFIRMATION_MODAL_VIEWS = "CONFIRMATION_MODAL_VIEW";
+
 type DRAWER_VIEWS = "CART_SIDEBAR" | "MOBILE_MENU";
 type ToastText = string;
 
@@ -207,6 +232,25 @@ function uiReducer(state: State, action: Action) {
         modalView: action.view,
       };
     }
+    case "OPEN_CONFIRMATION_MODAL": {
+      return {
+        ...state,
+        displayConfirmationModal: true,
+        displaySidebar: false,
+      };
+    }
+    case "CLOSE_CONFIRMATION_MODAL": {
+      return {
+        ...state,
+        displayConfirmationModal: false,
+      };
+    }
+    case "SET_CONFIRMATION_MODAL_VIEW": {
+      return {
+        ...state,
+        confirmationModalView: action.view,
+      };
+    }
     case "SET_DRAWER_VIEW": {
       return {
         ...state,
@@ -217,6 +261,12 @@ function uiReducer(state: State, action: Action) {
       return {
         ...state,
         modalData: action.data,
+      };
+    }
+    case "SET_CONFIRMATION_MODAL_DATA": {
+      return {
+        ...state,
+        confirmationModalData: action.data,
       };
     }
     case "SET_TOAST_TEXT": {
@@ -282,6 +332,11 @@ export const UIProvider: React.FC = (props) => {
   const openSearch = () => dispatch({ type: "OPEN_SEARCH" });
   const closeSearch = () => dispatch({ type: "CLOSE_SEARCH" });
 
+  const openConfirmationModal = () => dispatch({ type: "OPEN_CONFIRMATION_MODAL" });
+  const closeConfirmationModal = () => dispatch({ type: "CLOSE_CONFIRMATION_MODAL" });
+  const setConfirmationModalView = (view: CONFIRMATION_MODAL_VIEWS) => dispatch({ type: "SET_CONFIRMATION_MODAL_VIEW", view });
+  const setConfirmationModalData = (data: confirmationModalDataType) => dispatch({ type: "SET_CONFIRMATION_MODAL_DATA", data });
+
   const openDrawer = () => dispatch({ type: "OPEN_DRAWER" });
   const closeDrawer = () => dispatch({ type: "CLOSE_DRAWER" });
 
@@ -325,6 +380,10 @@ export const UIProvider: React.FC = (props) => {
       setModalData,
       addToast,
       deleteToast,
+      openConfirmationModal,
+      closeConfirmationModal,
+      setConfirmationModalView,
+      setConfirmationModalData,
     }),
     [state]
   );

@@ -3,7 +3,7 @@ import OrderGrid from '../../components/Order/OrderGrid'
 
 const Orders = () => {
   return (
-    <div className='p-[28px] overflow-hidden'>
+    <div className='py-[28px]'>
         <OrderGrid />
     </div>
   )

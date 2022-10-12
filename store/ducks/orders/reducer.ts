@@ -19,6 +19,22 @@ export const orderReducer = (state = initialUsersState , action: OrdersActions) 
                 status: LoadingStatus.LOADED
             }
             break
+        case OrdersActionsType.SET_ORDER_STATUS:
+            console.log('status')
+            const filteredOrderArray = state.items.filter((e) => {
+                return e.order_id !== action.payload.id
+            })
+            const chaingedStatusOrder = state.items.filter((e) => {
+                return e.order_id === action.payload.id
+            })
+            chaingedStatusOrder[0].status = action.payload.orderStatus
+
+            return {
+                ...state,
+                items: [...filteredOrderArray, ...chaingedStatusOrder],
+                status: LoadingStatus.LOADED
+            }
+            break
         default:
             return state
             break

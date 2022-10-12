@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { OrderType } from '../../utils/types';
-import {RiUserFill} from 'react-icons/ri'
 import { useUI } from '../../contexts/ui.context';
-import { Order } from '../../store/ducks/orders/contracts/state';
+import { Order, OrderStatus } from '../../store/ducks/orders/contracts/state';
 import useDeliveryTime from '../../hooks/useDeliveryTime';
 import getOrderStatusColor from '../../utils/getOrderStatusColor';
+import Tabs from './OrderTabs/Tabs';
+
+// icons
+import {RiUserFill, RiCarFill} from 'react-icons/ri'
+import {BiDotsVerticalRounded} from 'react-icons/bi'
+import DropsDropdown from '../UI/Dropdown/DropsDropdown';
+import { SetOrderStatus } from '../../store/ducks/orders/actions';
+
+
+
 
 interface OrdersType {
   order: Order
 }
 
 const OrderItem = ({ order }: OrdersType) => {
-  const {time, distance,getDeliveryTime} = useDeliveryTime()
+  const dispatch = useDispatch()
+  const {time, distance, getDeliveryTime} = useDeliveryTime()
+  console.log(order.status)
+
    
   useEffect(() => {
     let timeId = setInterval(() => {
@@ -23,46 +36,81 @@ const OrderItem = ({ order }: OrdersType) => {
     }
   })
 
-  const { openModal, setModalView } = useUI();
+  const { 
+    openModal, 
+    setModalView, 
+    setModalData, 
+    modalView, 
+    openConfirmationModal, 
+    setConfirmationModalView,
+    setConfirmationModalData, 
+    confirmationModalView, 
+  } = useUI();
 
 
 	function handlePopupView() {
-		// setModalData({ data: data });
+		setModalData({ data: order });
 		setModalView("ORDER_VIEW");
 		return openModal();
 	}
+
+  
+  function handleChangeOrderStatusBtnClick (e: any, id: number, orderStatus: any) {
+    e.stopPropagation()
+    setConfirmationModalData({ data: {questionText: `Change order status to - ${orderStatus}?`, perfomedFunction: () => dispatch(SetOrderStatus({id, orderStatus}))} });
+		setConfirmationModalView("CONFIRMATION_MODAL_VIEW");
+		return openConfirmationModal();
+  }
+
+  const statusColorObj = {
+    NEW: '#2dff2d',
+    PREPARATION: '#e62dff',
+    DELIVERY: '#ffea2d',
+    DONE: '#2dd5ff',
+    REJECTED: '#ff4d4d',
+
+  }
+
+  const orderStatusColor = String(statusColorObj[order.status])
+  console.log(orderStatusColor)
   
   return (
-    <div className='w-[300px] h-auto rounded bg-[#252836] overflow-hidden shadow-lg shadow-green-900 ' onClick={() => handlePopupView()}>
+    <div className={`w-[300px] h-auto rounded bg-[#252836] shadow shadow-[${orderStatusColor}]`} onClick={() => handlePopupView()}>
     {/* <div className='w-[300px] h-[350px] rounded bg-[#252836] overflow-hidden' > */}
         {/* <div className='h-full w-full p-[10px] border-[2px] border-[#ffc311] '> */}
-        <div className={`flex flex-col justify-between h-full w-full p-[20px] shadow-blue-300/80` }>
-          <div className='order-header flex justify-between items-center'>
+        <div className={`flex flex-col justify-between h-full w-full p-[15px] shadow-md shadow-[${orderStatusColor}]` }>
+          <div className='order-header flex justify-between'>
             <div className='flex flex-col'>
-              <div className='text-white'>Order: {order.order_id}</div>
+              <div className='text-white leading-none'>Order: {order.order_id}</div>
               <div className='text-white'>Kyiv, 76</div>
             </div>
-            <div className='flex items-center justify-center w-[50px] h-[50px] rounded-full bg-white'>
-              <RiUserFill width={50} height={50} />
+            <div className='flex items-center justify-end w-auto h-auto'>
+              <div className=' bg-[#2dff2d] rounded p-[5px]'>
+                <RiCarFill size={20} />
+              </div>
+              <div className='cursor-pointer'>
+                <DropsDropdown>
+                  <div className='px-2 py-1 text-[#2dff2d] hover:hover:bg-[#2dff2d58]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.NEW)}>{String(OrderStatus.NEW).toLowerCase()}</div>
+                  <div className='px-2 py-1 text-[#e62dff] hover:hover:bg-[#e62dff67]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.PREPARATION)}>{String(OrderStatus.PREPARATION).toLowerCase()}</div>
+                  <div className='px-2 py-1 text-[#ffea2d] hover:hover:bg-[#ffea2d48]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.DELIVERY)}>{String(OrderStatus.DELIVERY).toLowerCase()}</div>
+                  <div className='px-2 py-1 text-[#2dd5ff] hover:hover:bg-[#2dd5ff54]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.DONE)}>{String(OrderStatus.DONE).toLowerCase()}</div>
+                  <div className='px-2 py-1 text-[#ff4d4d] hover:hover:bg-[#ff4d4d43]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.REJECTED)}>{String(OrderStatus.REJECTED).toLowerCase()}</div>
+                </DropsDropdown>
+              </div>
             </div>
           </div>
-          {/* <div className='products-container py-[20px]'>
-            {order.items.map((item) => {
-              return <div className='flex items-center pt-[15px]'>
-                <div className='w-[50px] h-[50px] flex items-center'>
-                  <img src={item.img} alt="" />
-                </div>
-                <div className='flex flex-col text-white w-full pl-[10px]'>
-                  <div>{item.title}</div>
-                  <div>{item.price}</div>
-                </div>
-              </div>
-            })}
-          </div> */}
-          <div className='flex items-end pt-[15px] rounded gap-1'>
-              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getOrderStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliveryHour}</div>              
-              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getOrderStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliveryminute}</div>              
-              <div className={`flex items-center justify-center text-[20px] text-white font-bold bg-[${distance && getOrderStatusColor(distance)}] w-1/3 p-[5px] rounded`}>{time.deliverySeconds}</div>
+          <div className='flex items-end justify-between w-full pt-[15px] rounded gap-1'>
+            <div className='bg-[#2dff2d] cursor-pointer p-[5px] rounded relative'>
+              <RiCarFill size={20} />
+              {/* <Tabs /> */}
+            </div>
+            <div className={`flex items-center rounded bg-[${distance && getOrderStatusColor(distance)}]`}>
+              <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryHour}</div> 
+              <span className='text-white text-[15px]'>:</span>             
+              <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryminute}</div>
+              <span className='text-white text-[15px]'>:</span>                
+              <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliverySeconds}</div>
+            </div>
           </div>
         </div>
     </div>

@@ -1,17 +1,26 @@
 import { Action } from "redux";
 import { LoadingStatus } from "../../../types";
-import { Order } from "./state";
+import { Order, OrderStatus } from "./state";
 
 export enum OrdersActionsType {
     SET_ORDER = 'orders/SET_ORDER',
     DELETE_ORDER = 'orders/DELETE_ORDER',
     SET_LOADING_STATE = 'orders/SET_LOADING_STATE',
+    SET_ORDER_STATUS = 'orders/SET_ORDER_STATUS',
 
 }
 
 export interface SetOrderActionInterface extends Action<OrdersActionsType>{
     type: OrdersActionsType.SET_ORDER,
     payload: Order[]
+}
+
+export interface SetOrderStatusActionInterface extends Action<OrdersActionsType>{
+    type: OrdersActionsType.SET_ORDER_STATUS,
+    payload: {
+        id: string,
+        orderStatus: OrderStatus
+    }
 }
 
 // export interface FetchSignUpActionInterface extends Action<UserActionsType>{
@@ -30,4 +39,4 @@ export interface SetOrderActionInterface extends Action<OrdersActionsType>{
 //     payload: LoadingState
 // }
 
-export type OrdersActions = SetOrderActionInterface 
+export type OrdersActions = SetOrderActionInterface | SetOrderStatusActionInterface
