@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 // type InputProps = {
 //     name?: string,
@@ -13,14 +13,14 @@ import React, { useState, useRef } from 'react'
 
 
 const Input = ({name, id, onBlur, onChange, value, label, classes, ...rest}: any) => {
-    const inputRef = useRef()
+    const inputRef = useRef(0)
     const [inputFocused, setInputFocused] = useState(false)
 
     const onFocusOut = (e) => {
         onBlur ? onBlur(e) : null
         if (inputRef?.current?.value.length){
             setInputFocused(true)
-        } else if (inputRef?.current?.value.length == 0) {
+        } else if (inputRef?.current?.value.length === 0) {
             setInputFocused(false)
         }
     }

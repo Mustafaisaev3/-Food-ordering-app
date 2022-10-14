@@ -10,10 +10,12 @@ import Link from 'next/link'
 
 import {motion} from 'framer-motion'
 import { selectCart, selectCartItems, selectCartTotalpice } from '../../store/ducks/cart/selectors'
+import { selectProductsItems } from '../../store/ducks/products/selectors'
 
 
 function ProductsList() {
-  const products = [...pizzas, ...burgers, ...drinks]
+  const products = useSelector(selectProductsItems)
+  // const products = [...pizzas, ...burgers, ...drinks]
   const [activeCat, setActiveCat] = useState<string>('all')
 
   const category = useSelector<any>(state => state.category)

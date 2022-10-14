@@ -83,16 +83,6 @@ const Modal: FC<ModalProps> = ({
 							rootClassName
 						)}
 					>
-						<button
-							onClick={onClose}
-							aria-label="Close panel"
-							className={cn(
-								"fixed z-10 inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow text-gray-600 transition duration-200 focus:outline-none focus:text-gray-800 focus:shadow-md hover:text-gray-800 hover:shadow-md",
-								closeBtnClasses[variant]
-							)}
-						>
-							<IoClose className="text-xl" />
-						</button>
 						<motion.div
 							initial="from"
 							animate="to"
@@ -113,6 +103,16 @@ const Modal: FC<ModalProps> = ({
 									style={{ maxHeight: "calc(100vh - 140px)" }}
 								>
 									{children}
+									<button
+                                        onClick={onClose}
+                                        aria-label="Close panel"
+                                        className={cn(
+                                            "absolute right-[-15px] top-[-15px] z-10 inline-flex items-center justify-center w-5 h-5 md:w-8 md:h-8 rounded-full bg-white shadow text-gray-600 transition duration-200 focus:outline-none focus:text-gray-800 focus:shadow-md hover:text-gray-800 hover:shadow-md",
+                                            closeBtnClasses[variant]
+                                        )}
+                                    >
+                                        <IoClose className="text-xl" />
+                                    </button>
 								</div>
 							</div>
 						</motion.div>

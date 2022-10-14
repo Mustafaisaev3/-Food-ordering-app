@@ -8,8 +8,7 @@ const ManagedConfirmationModal: React.FC = () => {
 	const { displayConfirmationModal, closeConfirmationModal, confirmationModalView } = useUI();
 	return (
 		<ConfirmationModal open={displayConfirmationModal} onClose={closeConfirmationModal}>
-			{"CONFIRMATION_MODAL_VIEW" === "CONFIRMATION_MODAL_VIEW" && <MainView />}
-			{/* {confirmationModalView === "CONFIRMATION_MODAL_VIEW" && <MainView />} */}
+			{confirmationModalView === "CONFIRMATION_MODAL_VIEW" && <MainView />}
 		</ConfirmationModal>
 	);
 };

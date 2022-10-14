@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon, BellIcon } from '@heroicons/react/outline'
+import {IoIosCreate} from 'react-icons/io'
 import { motion } from 'framer-motion'
 import MenuIconContainer from './MenuIconContainer'
 
@@ -28,6 +29,11 @@ function Sidebar() {
             <MenuIconContainer>
                 <Link href='/orders'>
                     <ClockIcon color='white' className='h-[50px] w-[50px]' />
+                </Link>
+            </MenuIconContainer>
+            <MenuIconContainer>
+                <Link href='/products-management'>
+                    <IoIosCreate color='white' className='h-[50px] w-[50px]' />
                 </Link>
             </MenuIconContainer>
             <MenuIconContainer>

@@ -18,7 +18,7 @@ export interface SetOrderActionInterface extends Action<OrdersActionsType>{
 export interface SetOrderStatusActionInterface extends Action<OrdersActionsType>{
     type: OrdersActionsType.SET_ORDER_STATUS,
     payload: {
-        id: string,
+        id: number,
         orderStatus: OrderStatus
     }
 }

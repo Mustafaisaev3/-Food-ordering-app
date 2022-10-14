@@ -4,7 +4,7 @@ import {motion} from 'framer-motion'
 import { useUI } from '../../../contexts/ui.context'
 
 
-type DataProps = {
+type ProductDataProps = {
     id: number,
     title: string,
     description: string,
@@ -13,7 +13,7 @@ type DataProps = {
 }
 
 
-function Product({ data }: {data: DataProps}) {
+function Product({ data }: {data: ProductDataProps}) {
 
     const [isHover, setHover] = useState<boolean>(false)
 

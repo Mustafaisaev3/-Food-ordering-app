@@ -10,12 +10,14 @@ import { rootReducer } from "./rootReducer"
 // import { UsersState } from "./ducks/users/contracts/state"
 import { OrderState } from "./ducks/orders/contracts/state"
 import { CartState } from "./ducks/cart/contracts/state"
+import { ProductsState } from "./ducks/products/contract/state"
 
 
 
 export interface RootState {
     orders: OrderState,
-    cart: CartState
+    cart: CartState, 
+    products: ProductsState
 }
 
 export const store = createStore(rootReducer)

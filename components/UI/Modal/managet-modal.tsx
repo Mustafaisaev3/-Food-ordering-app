@@ -2,6 +2,8 @@ import { useUI } from "../../../contexts/ui.context";
 import Modal from "./Modal";
 import ProductPopup from "../../Product/product-popup";
 import OrderPopup from "../../Order/OrderPopup/OrderPopup";
+import AddProductPopup from "../../ProductsManagement/AddProductPopup/AddProductPopup";
+import UpdateProductPopup from "../../ProductsManagement/AddProductPopup/UpdateProduct";
 
 
 
@@ -13,6 +15,8 @@ const ManagedModal: React.FC = () => {
 		<Modal open={displayModal} onClose={closeModal}>
 			{modalView === "PRODUCT_VIEW" && <ProductPopup />}
 			{modalView === "ORDER_VIEW" && <OrderPopup />}
+			{modalView === "ADD_PRODUCT_VIEW" && <AddProductPopup />}
+			{modalView === "UPDATE_PRODUCT_VIEW" && <UpdateProductPopup />}
 		</Modal>
 	);
 };

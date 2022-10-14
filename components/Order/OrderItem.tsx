@@ -6,12 +6,14 @@ import { Order, OrderStatus } from '../../store/ducks/orders/contracts/state';
 import useDeliveryTime from '../../hooks/useDeliveryTime';
 import getOrderStatusColor from '../../utils/getOrderStatusColor';
 import Tabs from './OrderTabs/Tabs';
-
-// icons
-import {RiUserFill, RiCarFill} from 'react-icons/ri'
-import {BiDotsVerticalRounded} from 'react-icons/bi'
 import DropsDropdown from '../UI/Dropdown/DropsDropdown';
 import { SetOrderStatus } from '../../store/ducks/orders/actions';
+import getOrderStatusIcon from '../../utils/getOrderStatusIcons';
+
+// icons
+import {RiUserFill, RiCarFill, RiEBike2Fill} from 'react-icons/ri'
+import {BiDotsVerticalRounded} from 'react-icons/bi'
+import {MdOutlineFiberNew, MdOutlinePendingActions, MdDoneOutline, MdCancel} from 'react-icons/md'
 
 
 
@@ -85,13 +87,29 @@ const OrderItem = ({ order }: OrdersType) => {
               <div className='text-white'>Kyiv, 76</div>
             </div>
             <div className='flex items-center justify-end w-auto h-auto'>
-              <div className=' bg-[#2dff2d] rounded p-[5px]'>
+              {/* <div className=' bg-[#ffea2d48] rounded p-[5px]'>
                 <RiCarFill size={20} />
+              </div> */}
+              {/* <div className=' bg-[#ffea2d] rounded p-[5px]'>
+                <RiEBike2Fill size={20} />
+              </div> */}
+              {/* <div className=' bg-[#e62dff] rounded p-[5px]'>
+                <MdOutlinePendingActions size={20} />
               </div>
+              <div className=' bg-[#2dd5ff] rounded p-[5px]'>
+                <MdDoneOutline size={20} />
+              </div>
+              <div className=' bg-[#2dff2d] rounded p-[5px]'>
+                <MdOutlineFiberNew size={20} />
+              </div>
+              <div className=' bg-[#ff4d4d] rounded p-[5px]'>
+                <MdCancel size={20} />
+              </div> */}
+
               <div className='cursor-pointer'>
                 <DropsDropdown>
                   <div className='px-2 py-1 text-[#2dff2d] hover:hover:bg-[#2dff2d58]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.NEW)}>{String(OrderStatus.NEW).toLowerCase()}</div>
-                  <div className='px-2 py-1 text-[#e62dff] hover:hover:bg-[#e62dff67]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.PREPARATION)}>{String(OrderStatus.PREPARATION).toLowerCase()}</div>
+                  <div className='px-2 py-1 text-[#e62dff] hover:hover:bg-[#e62dff4d]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.PREPARATION)}>{String(OrderStatus.PREPARATION).toLowerCase()}</div>
                   <div className='px-2 py-1 text-[#ffea2d] hover:hover:bg-[#ffea2d48]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.DELIVERY)}>{String(OrderStatus.DELIVERY).toLowerCase()}</div>
                   <div className='px-2 py-1 text-[#2dd5ff] hover:hover:bg-[#2dd5ff54]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.DONE)}>{String(OrderStatus.DONE).toLowerCase()}</div>
                   <div className='px-2 py-1 text-[#ff4d4d] hover:hover:bg-[#ff4d4d43]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.REJECTED)}>{String(OrderStatus.REJECTED).toLowerCase()}</div>

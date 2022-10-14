@@ -5,7 +5,7 @@ export type ProductType = {
     price: number,
     category: string,
     img: string, 
-    quantity: number
+    // quantity: number
   };
 
 export type OrderStatus = 'new' | 'preparation' | 'delivery' | 'done' | 'rejected'
