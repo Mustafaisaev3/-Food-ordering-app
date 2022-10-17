@@ -26,7 +26,6 @@ function Header() {
             <div className='text-[15px]'>Tusday, 28 June</div>
         </div>
         <div className="search-input flex items-center rounded-[5px] w-[500px] bg-[#2D303E] p-[10px]">
-            {/* <input type="text" className='p-[10px] rounded-[5px] bg-main-linear-gradient outline-none text-white ' placeholder='Search food...'/> */}
             <BsSearch style={{marginRight: '10px'}} color={'white'}/>
             <input type="text" className=' outline-none text-white bg-[#2D303E]' placeholder='Search food...'/>
         </div>

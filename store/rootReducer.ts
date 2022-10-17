@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { cartReducer } from "./ducks/cart/reducer";
+import { departmentReducer } from "./ducks/departmens/reducer";
 
 import { orderReducer } from "./ducks/orders/reducer";
 import { productsReducer } from "./ducks/products/reducer";
@@ -8,5 +9,6 @@ import { productsReducer } from "./ducks/products/reducer";
 export const rootReducer = combineReducers({
     orders: orderReducer,
     cart: cartReducer,
-    products: productsReducer
+    products: productsReducer,
+    departments: departmentReducer
 })

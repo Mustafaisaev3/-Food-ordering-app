@@ -14,7 +14,8 @@ import {RiPaypalLine} from 'react-icons/ri'
 import {HiOutlineArrowNarrowRight} from 'react-icons/hi'
 import Input from '../../UI/Input'
 import Switch from '../../UI/Switch/Switch'
-import Map from '../GoogleMap/Map'
+// import Map from '../CheckoutMap/CheckoutMap'
+import CheckoutMap from '../CheckoutMap/CheckoutMap'
 import { clearCart } from '../../../store/ducks/cart/action'
 import { useUI } from '../../../contexts/ui.context'
 
@@ -120,7 +121,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
         variants={fadeInRight(0.50)}
         className="lg:relative w-full lg:w-[450px] overflow-hidden z-50 absolute right-0 top-0 lg:block"
     >
-        {showMap && <Map />}
+        {showMap && <CheckoutMap showMap={setShowMap} />}
         <div className='flex flex-col justify-between w-full h-screen rounded-tl-lg rounded-bl-lg bg-[#252836] '>
             <div className='flex justify-between items-center ps-[28px] border-b border-gray-700' >
                 <div className='text-[25px] pl-[28px] text-[white]'>Paymant</div>

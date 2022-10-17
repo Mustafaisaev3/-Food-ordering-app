@@ -2,9 +2,7 @@ import React, { useState,ReactEventHandler } from 'react'
 import { useDispatch } from 'react-redux'
 import { useUI } from '../../../contexts/ui.context'
 import { AddProduct } from '../../../store/ducks/products/actions'
-import { Product } from '../../../store/ducks/products/contract/state'
 import Input from '../../UI/Input'
-import TextArea from '../../UI/TextArea'
 
 const AddProductPopup = () => {
     const {modalData, closeModal, addToast} = useUI()
@@ -19,13 +17,6 @@ const AddProductPopup = () => {
     const dispatch = useDispatch()
 
     console.log(productId, title, description, price, category, imageUrl, 'hhhh', modalData)
-
-    // id: 15,
-    // title: 'Some burger',
-    // description: '',
-    // price: 15,
-    // category: 'burger',
-    // img: '/assets/images/products/burger/burger1.png'
 
     const handleAddProductBtnClick = (e: any) => {
         e.preventDefault()
@@ -43,7 +34,7 @@ const AddProductPopup = () => {
         console.log()
     }
 
-    const handleAddProductCloseBtnClick = (e) => {
+    const handleAddProductCloseBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         closeModal()
     }
@@ -53,12 +44,11 @@ const AddProductPopup = () => {
         <div className='text-white text-2xl py-4 px-5 border-b-[1px] border-b-[#EA9769]'>Add new product</div>
         <form className='flex flex-col grow'>
             <div className='grow w-full py-4 px-5'>
-                {/* <TextArea className='w-full' rows={3} /> */}
-                <Input label='Title' onChange={(e) => setTitle(e.target.value)} value={title}/>
-                <Input label='Description' onChange={(e) => setDescription(e.target.value)} value={description} />
-                <Input label='Price' onChange={(e) => setPrice(e.target.value)} value={price} />
-                <Input label='Category' onChange={(e) => setCategory(e.target.value)} value={category} />
-                <Input label='Image url' onChange={(e) => setImageUrl(e.target.value)} value={imageUrl}/>
+                <Input label='Title' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} value={title}/>
+                <Input label='Description' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)} value={description} />
+                <Input label='Price' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrice(e.target.value)} value={price} />
+                <Input label='Category' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCategory(e.target.value)} value={category} />
+                <Input label='Image url' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setImageUrl(e.target.value)} value={imageUrl}/>
             </div>
             <div className='py-4 px-5 flex items-center justify-center gap-5'>
                 <button type='submit' className='w-[150px] px-3 py-2 text-white bg-[#3aad1d] rounded-md cursor-pointer' onClick={(e) => handleAddProductBtnClick(e)}>Add product</button>

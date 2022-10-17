@@ -11,7 +11,7 @@ const OrderPopup = () => {
       <div className='w-full h-auto px-5 py-3 text-2xl text-white font-bold border-b border-gray-500'>Order: #212121</div>
       <div className='w-[800px] h-[450px]'>
         <div className='w-1/2 p-3 overflow-hidden'>
-          <div className='w-full h-[450px] overflow-y-scroll scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 scrollbar-thumb-rounded'>
+          <div className='w-full h-[450px] overflow-y-scroll scrollbar scrollbar-thumb-gray-100 scrollbar-track-gray-900 scrollbar-thumb-rounded'>
             {data.items.map((item) => {
               return <CartItem key={item.id} item={item}/>
             })}
