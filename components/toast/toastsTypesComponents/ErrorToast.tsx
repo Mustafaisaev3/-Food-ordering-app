@@ -18,7 +18,7 @@ const ErrorToast = ({id, text}: ErrorToastType) => {
       className={`p-[15px] w-[300px] text-sm mb-5 rounded-lg  text-white bg-red-500 flex items-center justify-between`} key={id}
     >
         <div>{text}</div>
-        <div><BiErrorAlt /></div>
+        <div className='pl-2'><BiErrorAlt /></div>
       </motion.div>
   )
 }

@@ -1,27 +1,27 @@
-import React, {useState, useRef, ReactElement} from 'react'
+import React, { useState, useRef } from 'react'
 import useOnClickOutside from '../../../utils/use-click-outside'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 
 
 const DropsDropdown = ({children}: {children?: any}) => {
-  const [openTweetDropdow, setOpenTweetDropdow] = useState(false)
+  const [openDropdow, setOpenDropdow] = useState(false)
 
   //Handle ouside click
   const dropdownRef = useRef(null)
-  useOnClickOutside(dropdownRef, () => setOpenTweetDropdow(false))
+  useOnClickOutside(dropdownRef, null, () => setOpenDropdow(false))
 
-  const handleTweetDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setOpenTweetDropdow(true)
+    setOpenDropdow(true)
   }
 
   return (
     <>
-        <div onClick={(e) => handleTweetDropdownClick(e)} className={'relative'}>
+        <div onClick={(e) => handleDropdownClick(e)} className={'relative'}>
             <div className='pl-2 overflow-hidden'>
                 <BsThreeDotsVertical size={20} color='white' />
             </div>
-            {openTweetDropdow && <div ref={dropdownRef} className='absolute bg-[#34384b] top-0 left-2 overflow-hidden rounded-md w-auto'>
+            {openDropdow && <div ref={dropdownRef} className='absolute bg-[#34384b] top-0 left-2 overflow-hidden rounded-md w-auto'>
                 {children}
             </div>
         }

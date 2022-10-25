@@ -7,10 +7,10 @@ const OrdersTabs = () => {
     <div className='w-full pb-[50px]'>
         <div className='flex justify-between border-b-[1px] border-[#EA9769] py-2'>
           <div className='flex items-center gap-2 '>
-            <Tab classes='bg-[#2dff2d]' text='New' />
-            <Tab classes='bg-[#ffea2d]' text='Pending' />
-            <Tab classes='bg-[#ff4d4d]' text='Failed' />
-            <Tab classes='bg-[#2dd5ff]' text='Completed' />
+            <Tab classes='bg-[#2dff2d] w-[100px]' text='New' />
+            <Tab classes='bg-[#ffea2d] w-[100px]' text='Pending' />
+            <Tab classes='bg-[#ff4d4d] w-[100px]' text='Failed' />
+            <Tab classes='bg-[#2dd5ff] w-[100px]' text='Completed' />
           </div>
           <div className='flex'>
             <ListBox 

@@ -3,12 +3,18 @@ import { HiOutlineSelector, HiCheck } from "react-icons/hi";
 import useOnClickOutside from '../../utils/use-click-outside';
 
 type Option = {
+    id?: string;
 	name: string;
     value?: any
 };
 
-const ListBox = ({ options }: {options : Option[]}) => {
-  const [activeOptionsItem, setActiveOptionsItem] = useState(options[0].value)
+interface ListBoxInterface {
+    options: Option[],
+    onSelectOption?: (item: any) => void
+}
+
+const ListBox = ({ options, onSelectOption, }: ListBoxInterface) => {
+  const [activeOptionsItemTitle, setActiveOptionsItemTitle] = useState(options[0].value)
   const [openDropdown, setOpenDropdown] = useState(false)
 
   //Handle ouside click
@@ -16,14 +22,17 @@ const ListBox = ({ options }: {options : Option[]}) => {
   useOnClickOutside(optionsDropdownRef, () => setOpenDropdown(false))
 
   const handleSelectOption = (item: Option) => {
-    setActiveOptionsItem(item.value)
-    setOpenDropdown(false)
+    if (item) {
+        onSelectOption(item)
+        setActiveOptionsItemTitle(item.value)
+        setOpenDropdown(false)
+    }
   }
 
   return (
-    <div className='listbox-container ml-3 relative'>
+    <div className='listbox-container relative'>
         <div className='listbox-header flex items-center justify-between px-3 py-2 bg-[#252836] rounded-md' onClick={() => setOpenDropdown(!openDropdown)}>
-            <div className='text-white pr-5'>{activeOptionsItem}</div>
+            <div className='text-white pr-5'>{activeOptionsItemTitle}</div>
             <HiOutlineSelector
                 className="w-5 h-5 text-gray-400"
                 aria-hidden="true"

@@ -61,7 +61,7 @@ const UpdateDepartmentPopup = () => {
                 <div className=''>
                     <div className='w-full text-white pt-7 text-center'>Choose an address</div>
                     <div className='flex gap-2'>
-                        <Places setOffice={setCoordinates} setAddress={setAddress} />
+                        <Places setDestination={setCoordinates} setAddress={setAddress} />
                     </div>
                 </div>
             </div>

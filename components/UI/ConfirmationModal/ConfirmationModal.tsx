@@ -51,7 +51,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({
 	const { closeConfirmationModal } = useUI();
 	const modalRootRef = useRef() as DivElementRef;
 	const modalInnerRef = useRef() as DivElementRef;
-	useOnClickOutside(modalInnerRef, () => closeConfirmationModal());
+	useOnClickOutside(modalInnerRef, modalRootRef,() => closeConfirmationModal());
 
 	useEffect(() => {
 		if (modalInnerRef.current) {
@@ -65,6 +65,11 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({
 			clearAllBodyScrollLocks();
 		};
 	}, [open]);
+
+	const handleCloseModalBtn = (e: React.MouseEvent<HTMLElement>) => {
+		e.stopPropagation()
+		onClose()
+	}
 
 	return (
 		<Portal>
@@ -106,7 +111,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({
 								>
 									{children}
                                     <button
-                                        onClick={onClose}
+                                        onClick={(e) => handleCloseModalBtn(e)}
                                         aria-label="Close panel"
                                         className={cn(
                                             "absolute right-[-15px] top-[-15px] z-10 inline-flex items-center justify-center w-5 h-5 md:w-8 md:h-8 rounded-full bg-white shadow text-gray-600 transition duration-200 focus:outline-none focus:text-gray-800 focus:shadow-md hover:text-gray-800 hover:shadow-md",

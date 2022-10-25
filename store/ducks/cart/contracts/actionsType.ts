@@ -9,7 +9,6 @@ export enum CartActionsType {
     DELETE_FROM_CART = 'cart/DELETE_FROM_CART',
 }
 
-
 export interface AddToCartActionInterface extends Action<CartActionsType> {
     type: CartActionsType.ADD_TO_CART,
     item: ProductType,

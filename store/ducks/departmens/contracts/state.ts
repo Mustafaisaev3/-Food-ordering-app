@@ -10,11 +10,12 @@ export interface Department {
         to: string
     },
     coordinates: {
-        lat: number | null, 
-        lng: number | null
+        lat: number, 
+        lng: number
     }
 }
 
 export interface DepartmentsState {
-    departments: Department[]
+    departments: Department[],
+    activeDepartment: Department | undefined
 }

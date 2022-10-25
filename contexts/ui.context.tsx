@@ -315,20 +315,12 @@ export const UIProvider: React.FC = (props) => {
   const unauthorize = () => dispatch({ type: "SET_UNAUTHORIZED" });
   const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
   const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
-  const toggleSidebar = () =>
-    state.displaySidebar
-      ? dispatch({ type: "CLOSE_SIDEBAR" })
-      : dispatch({ type: "OPEN_SIDEBAR" });
-  const closeSidebarIfPresent = () =>
-    state.displaySidebar && dispatch({ type: "CLOSE_CART" });
+  const toggleSidebar = () => state.displaySidebar ? dispatch({ type: "CLOSE_SIDEBAR" }) : dispatch({ type: "OPEN_SIDEBAR" });
+  const closeSidebarIfPresent = () => state.displaySidebar && dispatch({ type: "CLOSE_CART" });
   const openCart = () => dispatch({ type: "OPEN_CART" });
   const closeCart = () => dispatch({ type: "CLOSE_CART" });
-  const toggleCart = () =>
-    state.displaySidebar
-      ? dispatch({ type: "CLOSE_CART" })
-      : dispatch({ type: "OPEN_CART" });
-  const closeCartIfPresent = () =>
-    state.displaySidebar && dispatch({ type: "CLOSE_CART" });
+  const toggleCart = () => state.displaySidebar ? dispatch({ type: "CLOSE_CART" }) : dispatch({ type: "OPEN_CART" });
+  const closeCartIfPresent = () => state.displaySidebar && dispatch({ type: "CLOSE_CART" });
 
   const openFilter = () => dispatch({ type: "OPEN_FILTER" });
   const closeFilter = () => dispatch({ type: "CLOSE_FILTER" });

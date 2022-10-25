@@ -50,7 +50,7 @@ const Drawer: FC<DrowerProps> = ({
 	const { closeDrawer } = useUI();
 	const drawerRootRef = useRef() as DivElementRef;
 	const drawerInnerRef = useRef() as DivElementRef;
-	useOnClickOutside(drawerInnerRef, () => closeDrawer());
+	useOnClickOutside(drawerInnerRef, drawerRootRef, () => closeDrawer());
 
 	useEffect(() => {
 		if (drawerInnerRef.current) {

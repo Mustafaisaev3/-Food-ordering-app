@@ -30,3 +30,45 @@
 
 }
 
+/* .status-bg-NEW{
+    background-color: #2dff2d58;
+}
+.status-bg-PREPARATION{
+    background-color: #e62dff4d
+}
+.status-bg-DELIVERY{
+    background-color: #ffea2d48
+}
+.status-bg-DONE{
+    background-color: #2dd5ff54
+}
+.status-bg-REJECTED{
+    background-color: #ff4d4d43
+} */
+
+.status-NEW-shadow{
+    box-shadow: rgba(24, 214, 3, 0.3) 0px 0px 0px 3px;
+    /* box-shadow: rgba(153, 212, 90, 0.637) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+    /* background-color: #2dff2d58; */
+}
+
+.status-PREPARATION-shadow{
+    /* box-shadow: rgba(212, 90, 208, 0.637) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+    box-shadow: rgba(214, 3, 214, 0.3) 0px 0px 0px 3px;
+    /* background-color: #e62dff4d */
+}
+.status-DELIVERY-shadow{
+    /* box-shadow: rgba(204, 212, 90, 0.637) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+    box-shadow: rgba(179, 214, 3, 0.3) 0px 0px 0px 3px;
+    /* background-color: #fbff006e */
+}
+.status-DONE-shadow{
+    /* box-shadow: rgba(90, 173, 212, 0.637) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+    box-shadow: rgba(3, 116, 214, 0.3) 0px 0px 0px 3px;
+    /* background-color: #2dd5ff54 */
+}
+.status-REJECTED-shadow{
+    /* box-shadow: rgba(212, 90, 90, 0.637) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+    box-shadow: rgba(242, 1, 1, 0.3) 0px 0px 0px 3px;
+    /* background-color: #ff4d4d43 */
+} 

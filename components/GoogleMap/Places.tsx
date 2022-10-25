@@ -5,18 +5,17 @@ import usePlacesAutocomplete, {
   import {
     Combobox,
     ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
     ComboboxOption,
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
+import { LatLngLiteral } from "../../utils/types";
   
   type PlacesProps = {
-    setOffice: (position: google.maps.LatLngLiteral) => void;
-    setAddress?: (val: string) => any
+    setDestination: (position: LatLngLiteral) => void;
+    setAddress?: (val: string) => any,
   };
   
- const Places = ({ setOffice, setAddress }: PlacesProps) =>  {
+ const Places = ({ setDestination, setAddress }: PlacesProps) =>  {
     const {
       ready,
       value,
@@ -30,25 +29,23 @@ import usePlacesAutocomplete, {
     const handleSelect = async (val: string) => {
       setValue(val, false);
       clearSuggestions();
-  
+      
       const results = await getGeocode({ address: val });
       const { lat, lng } = await getLatLng(results[0]);
+
       setAddress(val)
-      setOffice({lat, lng});
-      
+      setDestination({lat, lng});
     };
   
     return (
-      <Combobox onSelect={handleSelect} className={'w-full h-auto pt-7'}>
+      <Combobox onSelect={handleSelect} className={'w-full h-auto pt-5'}>
         <ComboboxInput
           value={value}
           onChange={(e) => {
-            // e.stopPropagation()
             setValue(e.target.value)
           }}
           disabled={!ready}
           className="flex items-center rounded-[5px] w-full h-full p-[10px] outline-none text-white bg-[#2D303E] "
-          // className="w-full h-[50px] p-3 rounded-md outline-none "
           placeholder="Enter your address"
         />
         <div className="w-full h-auto bg-[#2D303E] rounded-md  overflow-hidden text-white">

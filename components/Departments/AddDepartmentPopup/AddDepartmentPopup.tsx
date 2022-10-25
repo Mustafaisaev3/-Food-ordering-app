@@ -19,9 +19,6 @@ const AddDepartmentPopup = () => {
 
     const dispatch = useDispatch()
 
-    // console.log(productId, title, description, price, category, imageUrl, 'hhhh', modalData)
-
-
     const handleAddDepartmentBtnClick = (e: any) => {
         e.preventDefault()
 
@@ -52,7 +49,9 @@ const AddDepartmentPopup = () => {
         <div className='text-white text-2xl py-4 px-5 border-b-[1px] border-b-[#EA9769]'>Add new Department</div>
         <form className='flex flex-col grow'>
             <div className='grow w-full py-4 px-5'>
-                {/* <TextArea className='w-full' rows={3} /> */}
+                {
+                    imageUrl && <img className='w-[100px] h-[100px]' src={imageUrl} />
+                }
                 <Input label='Title' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} value={title}/>
                 <Input label='Description' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)} value={description} />
                 <Input label='Image url' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setImageUrl(e.target.value)} value={imageUrl}/>
@@ -66,7 +65,7 @@ const AddDepartmentPopup = () => {
                 <div className=''>
                     <div className='w-full text-white pt-7 text-center'>Choose an address</div>
                     <div className='flex gap-2'>
-                        <Places setOffice={setCoordinates} setAddress={setAddress} />
+                        <Places setDestination={setCoordinates} setAddress={setAddress} />
                     </div>
                 </div>
             </div>

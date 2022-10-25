@@ -1,4 +1,4 @@
-import { addDepartmentActionInterface, deleteDepartmentActionInterface, DepartmentActionsType, updateDepartmentActionInterface } from "./contracts/actionsType";
+import { addDepartmentActionInterface, deleteDepartmentActionInterface, setActiveDepartmentActionInterface, DepartmentActionsType, updateDepartmentActionInterface } from "./contracts/actionsType";
 import { Department } from "./contracts/state";
 
 
@@ -14,5 +14,10 @@ export const UpdateDepartment = (payload: Department): updateDepartmentActionInt
 
 export const DeleteDepartment = (payload: Department['id']): deleteDepartmentActionInterface => ({
     type: DepartmentActionsType.DELETE_DEPARTMENT,
+    payload
+})
+
+export const SetActiveDepartment = (payload: Department['id']): setActiveDepartmentActionInterface => ({
+    type: DepartmentActionsType.SET_ACTIVE_DEPARTMENT,
     payload
 })

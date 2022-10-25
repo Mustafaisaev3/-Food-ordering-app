@@ -5,6 +5,7 @@ export enum DepartmentActionsType {
     ADD_DEPARTMENT = 'department/ADD_DEPARTMENT',
     DELETE_DEPARTMENT = 'department/DELETE_DEPARTMENT',
     UPDATE_DEPARTMENT = 'department/UPDATE_DEPARTMENT',
+    SET_ACTIVE_DEPARTMENT = 'department/SET_ACTIVE_DEPARTMENT',
 }
 
 export interface addDepartmentActionInterface extends Action<DepartmentActionsType> {
@@ -22,4 +23,9 @@ export interface deleteDepartmentActionInterface extends Action<DepartmentAction
     payload: Department['id']
 }
 
-export type DepartmentActions = addDepartmentActionInterface |  updateDepartmentActionInterface | deleteDepartmentActionInterface 
+export interface setActiveDepartmentActionInterface extends Action<DepartmentActionsType> {
+    type: DepartmentActionsType.SET_ACTIVE_DEPARTMENT,
+    payload: Department['id']
+}
+
+export type DepartmentActions = addDepartmentActionInterface |  updateDepartmentActionInterface | deleteDepartmentActionInterface | setActiveDepartmentActionInterface

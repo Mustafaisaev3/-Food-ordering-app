@@ -1,10 +1,11 @@
 import { DepartmentActions, DepartmentActionsType } from "./contracts/actionsType"
 import { DepartmentsState } from "./contracts/state"
-
+import { departments } from "../../../data/departments/departments"
 
 
 const initialState: DepartmentsState = {
-    departments: []
+    departments: [...departments],
+    activeDepartment: departments[0] 
 }
 
 export const departmentReducer = (state = initialState, action: DepartmentActions) => {
@@ -29,6 +30,15 @@ export const departmentReducer = (state = initialState, action: DepartmentAction
             return {
                 ...state,
                 departments: [...filteredDeleteItemArr]
+            }
+        case DepartmentActionsType.SET_ACTIVE_DEPARTMENT:
+            const activeDepartment = state.departments.filter((i) => {
+                return i.id === action.payload
+            })
+            console.log(activeDepartment)
+            return {
+                ...state,
+                activeDepartment: activeDepartment[0]
             }
         default: 
             return state

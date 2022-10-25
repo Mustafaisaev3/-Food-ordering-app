@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { OrderType } from '../../utils/types';
 import { useUI } from '../../contexts/ui.context';
-import { Order, OrderStatus } from '../../store/ducks/orders/contracts/state';
+import { OrderStatus } from '../../store/ducks/orders/contracts/state';
 import useDeliveryTime from '../../hooks/useDeliveryTime';
 import getOrderStatusColor from '../../utils/getOrderStatusColor';
+import useStatusIconComponent from '../../hooks/useStatusIconComponent';
 import Tabs from './OrderTabs/Tabs';
 import DropsDropdown from '../UI/Dropdown/DropsDropdown';
 import { SetOrderStatus } from '../../store/ducks/orders/actions';
@@ -19,14 +20,14 @@ import {MdOutlineFiberNew, MdOutlinePendingActions, MdDoneOutline, MdCancel} fro
 
 
 interface OrdersType {
-  order: Order
+  order: OrderType
 }
 
 const OrderItem = ({ order }: OrdersType) => {
   const dispatch = useDispatch()
-  const {time, distance, getDeliveryTime} = useDeliveryTime()
-  console.log(order.status)
+  const { statusIconComponent } = useStatusIconComponent()
 
+  const {time, distance, getDeliveryTime} = useDeliveryTime()
    
   useEffect(() => {
     let timeId = setInterval(() => {
@@ -63,30 +64,18 @@ const OrderItem = ({ order }: OrdersType) => {
 		setConfirmationModalView("CONFIRMATION_MODAL_VIEW");
 		return openConfirmationModal();
   }
-
-  const statusColorObj = {
-    NEW: '#2dff2d',
-    PREPARATION: '#e62dff',
-    DELIVERY: '#ffea2d',
-    DONE: '#2dd5ff',
-    REJECTED: '#ff4d4d',
-
-  }
-
-  const orderStatusColor = String(statusColorObj[order.status])
-  console.log(orderStatusColor)
   
   return (
-    <div className={`w-[300px] h-auto rounded bg-[#252836] shadow shadow-[${orderStatusColor}]`} onClick={() => handlePopupView()}>
+    <div className={`w-[300px] h-auto rounded bg-[#252836] shadow status-${order.status}-shadow`} onClick={() => handlePopupView()}>
     {/* <div className='w-[300px] h-[350px] rounded bg-[#252836] overflow-hidden' > */}
         {/* <div className='h-full w-full p-[10px] border-[2px] border-[#ffc311] '> */}
-        <div className={`flex flex-col justify-between h-full w-full p-[15px] shadow-md shadow-[${orderStatusColor}]` }>
+        <div className={`flex flex-col justify-between h-full w-full p-[15px] shadow-md` }>
           <div className='order-header flex justify-between'>
             <div className='flex flex-col'>
               <div className='text-white leading-none'>Order: {order.order_id}</div>
-              <div className='text-white'>Kyiv, 76</div>
+              <div className='text-white'>{order.status}</div>
             </div>
-            <div className='flex items-center justify-end w-auto h-auto'>
+            <div className='flex items-start justify-end w-auto h-auto'>
               {/* <div className=' bg-[#ffea2d48] rounded p-[5px]'>
                 <RiCarFill size={20} />
               </div> */}
@@ -118,10 +107,10 @@ const OrderItem = ({ order }: OrdersType) => {
             </div>
           </div>
           <div className='flex items-end justify-between w-full pt-[15px] rounded gap-1'>
-            <div className='bg-[#2dff2d] cursor-pointer p-[5px] rounded relative'>
+            {/* <div className='bg-[#2dff2d] cursor-pointer p-[5px] rounded relative'>
               <RiCarFill size={20} />
-              {/* <Tabs /> */}
-            </div>
+            </div> */}
+            {statusIconComponent[`${order.status}`]}
             <div className={`flex items-center rounded bg-[${distance && getOrderStatusColor(distance)}]`}>
               <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryHour}</div> 
               <span className='text-white text-[15px]'>:</span>             

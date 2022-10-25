@@ -1,40 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react'
-import {motion} from 'framer-motion'
-import {IoMdArrowDropdown} from 'react-icons/io'
+import React, { useState, useRef } from 'react'
+import useOnDropdownClickOutside from '../../../utils/useDropdownClickOutside'
+import { HiOutlineSelector } from 'react-icons/hi'
 
-type DropdownPorps = {
-    title: string,
-    items: string[]
-}
 
-function Dropdown({title, items}: DropdownPorps) {
-  const [isActive, setActive] = useState(false)
+const Dropdown = ({activeItem = 'Choose item', children}: {children?: any, activeItem?: any}) => {
+  const [openDropdow, setOpenDropdow] = useState(false)
 
-  const dropRef = useRef()
+  //Handle ouside click
+  const dropdownRef = useRef(null)
+  useOnDropdownClickOutside(dropdownRef, () => setOpenDropdow(false))
 
-  useEffect(() => {
-    document.addEventListener('mousedown', (e) => {
-        let node = dropRef.current! as any 
-        if(!node.contains(e.target)){
-            setActive(false)
-        } else {
-            return
-        }
-    })   
-  })
+  const handleDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setOpenDropdow(!openDropdow)
+  }
+
   return (
-    <div className='w-[auto] h-[auto] relative' ref={dropRef}>
-        <div className='w-[100%] p-[10px] rounded-lg cursor-pointer text-white bg-[#252836] flex justify-between items-center' onClick={() => setActive(!isActive)}>{title} <motion.span className='ml-[10px]' animate={isActive ? {rotate: -180} : {rotate: 0}}><IoMdArrowDropdown /></motion.span></div> 
-        {isActive && <motion.div initial={{height: 0}} animate={{ height: 100}}  className="dropdown_container w-[100%] p-[10px] rounded-lg cursor-pointer bg-white absolute left-0 top-[110%] z-30 overflow-hidden">
-            {
-                items.map((i) => {
-                    return <div className="dropdown_item">{i}</div>
-                })
-            }
-        </motion.div>
+    <>
+        <div onClick={(e) => handleDropdownClick(e)} className={'relative'}>
+            <div className='listbox-header flex items-center justify-between px-3 py-2 bg-[#252836] rounded-md' >
+                <div className='text-white pr-5'>{activeItem}</div>
+                <HiOutlineSelector
+                    className="w-5 h-5 text-gray-400"
+                    aria-hidden="true"
+                />
+            </div>
+            {openDropdow && <div ref={dropdownRef} className='absolute bg-[#34384b] top-0 left-2 overflow-hidden rounded-md w-auto'>
+                {children}
+            </div>
         }
-        
-    </div>
+        </div>
+    </>
   )
 }
 

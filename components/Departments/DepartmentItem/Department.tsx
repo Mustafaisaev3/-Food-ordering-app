@@ -19,7 +19,7 @@ const Department = ({department}: {department: Department}) => {
         <div className='grow flex items-center justify-center flex-col'>
          <Image src={department.img} height={150} width={150} />
          <div className='pt-5 text-white font-semibold'>{department.title}</div>
-         <div className='pt-5 text-white font-semibold'>{department.timetable.from} : {department.timetable.to}</div>
+         <div className='pt-1 text-[#62ff3a] font-semibold'>{department.timetable.from} : {department.timetable.to}</div>
         </div>
         <div className='flex items-center justify-center cursor-pointer bg-[#e7895747] p-3 text-[#EA9769]' onClick={handleUpdateDepartmentBtnClick}><RiEdit2Line className='mr-2' color='#EA9769' size={20}/> Edit dish</div>
     </div>

@@ -11,7 +11,7 @@ type WorningToastType = {
     return (
       <motion.div className={`p-[20px] w-[300px] text-sm mb-5 rounded-lg  text-white bg-yellow-500 flex items-center justify-between`} key={id}>
         <div>{text}</div>
-        <div><RiErrorWarningLine /></div>
+        <div className='pl-2'><RiErrorWarningLine /></div>
       </motion.div>
     )
   }

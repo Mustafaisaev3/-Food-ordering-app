@@ -12,9 +12,9 @@ import { BsCreditCardFill } from 'react-icons/bs'
 import { GiWallet } from 'react-icons/gi'
 import {RiPaypalLine} from 'react-icons/ri'
 import {HiOutlineArrowNarrowRight} from 'react-icons/hi'
+import {BiCurrentLocation, BiMapAlt} from 'react-icons/bi'
 import Input from '../../UI/Input'
 import Switch from '../../UI/Switch/Switch'
-// import Map from '../CheckoutMap/CheckoutMap'
 import CheckoutMap from '../CheckoutMap/CheckoutMap'
 import { clearCart } from '../../../store/ducks/cart/action'
 import { useUI } from '../../../contexts/ui.context'
@@ -53,6 +53,8 @@ const PaymentComponent = (payment, active) => {
 
 const Checkout = ({closeCheckout}: CheckoutProps) => {
   const { closeDrawer, addToast } = useUI()
+  const [deliveryCoordinates, setDeliveryCoordinates] = useState()
+  const [destinationAddressTitle, getDestinationAddressTitle] = useState('')
 
   const [showDelivery, setShowDelivery] = useState(false)
   const [showMap, setShowMap] = useState(false)
@@ -102,8 +104,22 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
     total_price: 200,
     order_id: new Date().getTime(),
     date: new Date().getTime(),
-    status: 'new'
+    status: 'NEW',
+    delivery: {
+        isDelivery: deliveryCoordinates ? true : false,
+        deliveryPlaceTitle: destinationAddressTitle,
+        deliveryCoordinates: deliveryCoordinates ? deliveryCoordinates : undefined,
+    },
   }
+//   const order: OrderType = {
+//     items: cartItems,
+//     total_price: 200,
+//     order_id: new Date().getTime(),
+//     date: new Date().getTime(),
+//     status: 'new',
+//     delivery: deliveryCoordinates ? true : false,
+//     deliveryCoordinates: deliveryCoordinates ? deliveryCoordinates : undefined,
+//   }
 
   const hundleSubmit = (order: OrderType) => {
     dispatch(addOrder(order))
@@ -120,8 +136,8 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
         exit="from"
         variants={fadeInRight(0.50)}
         className="lg:relative w-full lg:w-[450px] overflow-hidden z-50 absolute right-0 top-0 lg:block"
-    >
-        {showMap && <CheckoutMap showMap={setShowMap} />}
+    >   
+        {showMap && <CheckoutMap showMap={setShowMap} setDeliveryCoordinates={setDeliveryCoordinates} setDestinationAddressTitle={getDestinationAddressTitle} />}
         <div className='flex flex-col justify-between w-full h-screen rounded-tl-lg rounded-bl-lg bg-[#252836] '>
             <div className='flex justify-between items-center ps-[28px] border-b border-gray-700' >
                 <div className='text-[25px] pl-[28px] text-[white]'>Paymant</div>
@@ -145,27 +161,19 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                             <RiPaypalLine size={20} color={'white'} />
                             PayPall
                         </div>
-                        {/* {PaymantMethods.map((payment) => {
-                            return <PaymentComponent payment={payment} active={paymentMethod}/>
-                        })} */}
                     </div>
                     <form onSubmit={handleSubmit} className='w-full h-full flex flex-col justify-between'>
                         <div>
-                            {/* <div className='flex flex-col pt-9'> */}
-                                <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
-                                {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null}
-                            {/* </div> */}
-                            {/* <div className='flex flex-col pt-9'> */}
-                                <Input id='cardNumber' name='cardNumber' onBlur={handleBlur} label='Card number' value={values.cardNumber} onChange={handleChange} classes={touched.cardNumber && errors.cardNumber ? 'border-[1px] border-red-600' : ''}/>
-                                {touched.cardNumber && errors.cardNumber ? <div className='text-[red]'>{errors.cardNumber}</div> : null}
-                            {/* </div> */}
+                            <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
+                            {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null}
+                            <Input id='cardNumber' name='cardNumber' onBlur={handleBlur} label='Card number' value={values.cardNumber} onChange={handleChange} classes={touched.cardNumber && errors.cardNumber ? 'border-[1px] border-red-600' : ''}/>
+                            {touched.cardNumber && errors.cardNumber ? <div className='text-[red]'>{errors.cardNumber}</div> : null}
                             <div className='flex flex-col lg:flex-row '>
                                 <div className=''>
                                     <Input id='expirationDate' name='expirationDate' onBlur={handleBlur} label='Expiration Date' value={values.expirationDate} onChange={handleChange} classes={touched.expirationDate && errors.expirationDate ? 'border-[1px] border-red-600' : ''} />
                                     {touched.expirationDate && errors.expirationDate ? <div className='text-[red]'>{errors.expirationDate}</div> : null}
                                 </div>
                                 <div className='lg:ml-3'>
-                                    {/* <Input id='CVV' name='CVV' {...formik.getFieldProps('CVV')} onBlur={formik.handleBlur} value={formik.values.CVV} onChange={formik.handleChange} classes={`w-full ${formik.touched.CVV && formik.errors.CVV ? 'border-[1px] border-red-600' : ''}`} /> */}
                                     <Input id='CVV' maxlength={3} type={"password"} {...getFieldProps('CVV')} label='CVV' classes={`w-full ${touched.CVV && errors.CVV ? 'border-[1px] border-red-600' : ''}`} />
                                     {touched.CVV && errors.CVV ? <div className='text-[red]'>{errors.CVV}</div> : null}
                                 </div>
@@ -177,7 +185,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                                 <div className={`${showDelivery ? '' : 'absolute'} w-[100%] h-[100%] z-30`  }></div>
                                 <div className= {`${showDelivery ? '' : 'opacity-20'}`  }>
                                     <div className='flex flex-col' onClick={() => setShowMap(!showMap)}>
-                                        <Input id='map' name='Map' label='Map' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
+                                        <Input id='map' name='Map' label='Map' value={order.delivery.deliveryPlaceTitle} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} rightIcon={<BiCurrentLocation size={20}  color={'#EA6969'} />}  leftIcon={<BiMapAlt size={20}  color={'#EA6969'} />}/>
                                         {/* {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null} */}
                                     </div>
                                     <div className='flex flex-col'>
