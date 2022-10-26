@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { authReducer } from "./ducks/auth/reducer";
 import { cartReducer } from "./ducks/cart/reducer";
 import { departmentReducer } from "./ducks/departmens/reducer";
 
@@ -10,5 +11,6 @@ export const rootReducer = combineReducers({
     orders: orderReducer,
     cart: cartReducer,
     products: productsReducer,
-    departments: departmentReducer
+    departments: departmentReducer,
+    auth: authReducer
 })

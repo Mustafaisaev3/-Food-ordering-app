@@ -6,10 +6,13 @@ import { GoBell } from 'react-icons/go'
 import { BsSearch } from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
 import { Badge } from '../Badge'
+import { useDispatch } from 'react-redux'
+import { LogoutUser } from '../../store/ducks/auth/action'
 
 
 
 function Header() {
+    const dispatch = useDispatch()
 
     const { openDrawer } = useUI();
 
@@ -17,6 +20,11 @@ function Header() {
 	function handleDrawerView() {
 		return openDrawer();
 	}
+
+    const handleLogoutClick = () => {
+        localStorage.removeItem('userToken')
+        dispatch(LogoutUser())
+    }
 
 
   return (
@@ -30,7 +38,7 @@ function Header() {
             <input type="text" className=' outline-none text-white bg-[#2D303E]' placeholder='Search food...'/>
         </div>
         <div className="user-ui mx-20px flex gap-5">
-            <div className='relative cursor-pointer'>
+            <div className='relative cursor-pointer' onClick={handleLogoutClick}>
                 <GoBell size={30} color={'white'} />
                 <Badge bg='green' textColor='white' content={2} />
                 {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[green] rounded-full leading-none w-5 h-5'>2</div> */}
