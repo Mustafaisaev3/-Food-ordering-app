@@ -79,9 +79,9 @@ const OrderPopup = () => {
           </div>
         </div>
 
-        <div className='w-[800px] relative flex grow'>
+        <div className='w-[800px] relative flex grow overflow-hidden'>
           <div className='w-1/2 flex flex-col justify-between p-3 overflow-hidden'>
-            <div className='w-full h-[450px] overflow-y-scroll scrollbar scrollbar-thumb-gray-100 scrollbar-track-gray-900 scrollbar-thumb-rounded'>
+            <div className='w-full h-[450px] overflow-y-scroll'>
               {data.items.map((item) => {
                 // return <CartItem key={item.id} item={item}/>
                 return <ProductInOrder key={item.id} item={item} order_id={data.order_id}/>
@@ -156,7 +156,7 @@ const OrderPopup = () => {
             </div>
           </div>
 
-          {/* <div className='p-3 bg-green-500 rounded-md' onClick={() => setShowMap(true)}>Open Map</div> */}
+
           <AnimatePresence>
           {showMap &&
             <motion.div 

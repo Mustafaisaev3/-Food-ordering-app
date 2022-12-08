@@ -10,20 +10,20 @@ const ToastList = () => {
 
   return (
     <>
+        <AnimatePresence>
         {newToastList.length 
         ? 
             <Portal>
-                <div className='fixed right-3 top-3 z-[1000]'>
-                    <AnimatePresence>
-                        {newToastList.map((e) => {
-                            return <Toast id={e.id} text={e.text} toastType={e.toastType}/>
-                        })}
-                    </AnimatePresence>
+                <div className='fixed right-3 top-3 z-[1000]'>          
+                    {newToastList.map((e) => {
+                        return <Toast id={e.id} text={e.text} toastType={e.toastType}/>
+                    })}
                 </div>
             </Portal>
         : 
             null 
         }
+        </AnimatePresence>
     </>
         
   )

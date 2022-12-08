@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import checkIsInputValue from '../../utils/checkIsInputEmpty'
 
 // type InputProps = {
 //     name?: string,
@@ -16,14 +17,22 @@ const Input = ({name, id, onBlur, onChange, value, label, classes, rightIcon, le
     const inputRef = useRef(0)
     const [inputFocused, setInputFocused] = useState(false)
 
+    // const checkIsInputEmpty = () => {
+    //     if (inputRef?.current?.value.length){
+    //         setInputFocused(true)
+    //     } else if (inputRef?.current?.value.length === 0) {
+    //         setInputFocused(false)
+    //     }
+    // }
+
     const onFocusOut = (e) => {
         onBlur ? onBlur(e) : null
-        if (inputRef?.current?.value.length){
-            setInputFocused(true)
-        } else if (inputRef?.current?.value.length === 0) {
-            setInputFocused(false)
-        }
+        checkIsInputValue(inputRef?.current?.value, setInputFocused)
     }
+
+    useEffect(() => {
+        checkIsInputValue(inputRef?.current?.value, setInputFocused)
+    }, [])
 
     return (
         <div className={`relative w-full mt-8 ${classes} rounded-[5px] flex p-[10px] text-white bg-[#2D303E]`}>

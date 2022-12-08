@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { motion } from 'framer-motion'
 
 import { useUI } from '../../contexts/ui.context'
 import { GoBell } from 'react-icons/go'
@@ -8,24 +9,23 @@ import {FiShoppingCart} from 'react-icons/fi'
 import { Badge } from '../Badge'
 import { useDispatch } from 'react-redux'
 import { LogoutUser } from '../../store/ducks/auth/action'
+import NotificationContainer from '../Notification/NotificationContainer'
+import { fadeInTop } from '../../utils/motion/fade-in-top'
 
 
 
 function Header() {
-    const dispatch = useDispatch()
+  const { openDrawer } = useUI();
+  const [showNotification, setShowNotification] = useState(false)
 
-    const { openDrawer } = useUI();
+  function handleDrawerView() {
+    return openDrawer();
+  }
 
-
-	function handleDrawerView() {
-		return openDrawer();
-	}
-
-    const handleLogoutClick = () => {
-        localStorage.removeItem('userToken')
-        dispatch(LogoutUser())
-    }
-
+  
+  const handleNotificationBtnClick = () => {
+    setShowNotification(!showNotification)
+  }
 
   return (
     <header className='w-[100%] h-[auto] flex items-center justify-between'>
@@ -38,9 +38,20 @@ function Header() {
             <input type="text" className=' outline-none text-white bg-[#2D303E]' placeholder='Search food...'/>
         </div>
         <div className="user-ui mx-20px flex gap-5">
-            <div className='relative cursor-pointer' onClick={handleLogoutClick}>
+            <div className='relative cursor-pointer' onClick={handleNotificationBtnClick}>
                 <GoBell size={30} color={'white'} />
                 <Badge bg='green' textColor='white' content={2} />
+                {showNotification &&
+                    <motion.div
+                        className='absolute top-[40px] right-[30%] z-[100]'
+                        initial="from"
+                        animate="to"
+                        exit="from"
+                        variants={fadeInTop()}
+                    >
+                        <NotificationContainer />
+                    </motion.div>
+                }
                 {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[green] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
             <div className='relative cursor-pointer' onClick={handleDrawerView}>

@@ -72,3 +72,27 @@
     box-shadow: rgba(242, 1, 1, 0.3) 0px 0px 0px 3px;
     /* background-color: #ff4d4d43 */
 } 
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #EA6969;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ea6969d4;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #ea69698a;
+    border-radius: 5px;
+}
+

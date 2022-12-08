@@ -76,25 +76,6 @@ const OrderItem = ({ order }: OrdersType) => {
               <div className='text-white'>{order.status}</div>
             </div>
             <div className='flex items-start justify-end w-auto h-auto'>
-              {/* <div className=' bg-[#ffea2d48] rounded p-[5px]'>
-                <RiCarFill size={20} />
-              </div> */}
-              {/* <div className=' bg-[#ffea2d] rounded p-[5px]'>
-                <RiEBike2Fill size={20} />
-              </div> */}
-              {/* <div className=' bg-[#e62dff] rounded p-[5px]'>
-                <MdOutlinePendingActions size={20} />
-              </div>
-              <div className=' bg-[#2dd5ff] rounded p-[5px]'>
-                <MdDoneOutline size={20} />
-              </div>
-              <div className=' bg-[#2dff2d] rounded p-[5px]'>
-                <MdOutlineFiberNew size={20} />
-              </div>
-              <div className=' bg-[#ff4d4d] rounded p-[5px]'>
-                <MdCancel size={20} />
-              </div> */}
-
               <div className='cursor-pointer'>
                 <DropsDropdown>
                   <div className='px-2 py-1 text-[#2dff2d] hover:hover:bg-[#2dff2d58]' onClick={(e) => handleChangeOrderStatusBtnClick(e, order.order_id, OrderStatus.NEW)}>{String(OrderStatus.NEW).toLowerCase()}</div>
@@ -111,13 +92,18 @@ const OrderItem = ({ order }: OrdersType) => {
               <RiCarFill size={20} />
             </div> */}
             {statusIconComponent[`${order.status}`]}
-            <div className={`flex items-center rounded bg-[${distance && getOrderStatusColor(distance)}]`}>
-              <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryHour}</div> 
-              <span className='text-white text-[15px]'>:</span>             
-              <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryminute}</div>
-              <span className='text-white text-[15px]'>:</span>                
-              <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliverySeconds}</div>
-            </div>
+            {distance < 0 
+                ?
+                  <div className={`flex items-center rounded px-3 text-white  bg-[${distance && getOrderStatusColor(distance)}]`}>FAIL</div>
+                :
+                  <div className={`flex items-center rounded bg-[${distance && getOrderStatusColor(distance)}]`}>
+                    <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryHour}</div> 
+                    <span className='text-white text-[15px]'>:</span>             
+                    <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliveryMinute}</div>
+                    <span className='text-white text-[15px]'>:</span>                
+                    <div className={` text-[15px] px-2 text-white font-bold `}>{time.deliverySeconds}</div>
+                  </div>
+              }
           </div>
         </div>
     </div>

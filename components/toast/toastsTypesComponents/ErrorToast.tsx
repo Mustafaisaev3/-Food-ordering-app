@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 import {BiErrorAlt} from 'react-icons/bi'
+import { fadeInLeft } from '../../../utils/motion/fade-in-left'
 import { fadeInRight } from '../../../utils/motion/fade-in-right'
 
 type ErrorToastType = {
@@ -14,7 +15,7 @@ const ErrorToast = ({id, text}: ErrorToastType) => {
       initial="from"
       animate="to"
       exit="from"
-      variants={fadeInRight(0.50)}
+      variants={fadeInLeft()}
       className={`p-[15px] w-[300px] text-sm mb-5 rounded-lg  text-white bg-red-500 flex items-center justify-between`} key={id}
     >
         <div>{text}</div>

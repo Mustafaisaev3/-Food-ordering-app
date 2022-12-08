@@ -6,7 +6,8 @@ export interface Product {
     category: string,
     img: string, 
 }
+import { ProductType } from "../../../../utils/types"
 
 export interface ProductsState {
-    items: Product[]
+    items: ProductType[]
 }

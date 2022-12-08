@@ -18,7 +18,7 @@ const DropsDropdown = ({children}: {children?: any}) => {
   return (
     <>
         <div onClick={(e) => handleDropdownClick(e)} className={'relative'}>
-            <div className='pl-2 overflow-hidden'>
+            <div className='w-[30px] h-[30px] flex items-center justify-center overflow-hidden rounded-full hover:bg-[#10101063]'>
                 <BsThreeDotsVertical size={20} color='white' />
             </div>
             {openDropdow && <div ref={dropdownRef} className='absolute bg-[#34384b] top-0 left-2 overflow-hidden rounded-md w-auto'>

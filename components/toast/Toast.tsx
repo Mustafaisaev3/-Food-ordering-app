@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useUI } from '../../contexts/ui.context'
 import ErrorToast from './toastsTypesComponents/ErrorToast'
 import SuccesToast from './toastsTypesComponents/SuccessToast'
 import WorningToast from './toastsTypesComponents/WorningToast'
+import { fadeInRight } from '../../utils/motion/fade-in-right'
+import { fadeInLeft } from '../../utils/motion/fade-in-left'
+
 
 interface ToastType {
   id: any,
@@ -32,7 +36,11 @@ const Toast = ({id, toastType, text}: ToastType) => {
   }
 
   return (
-      <div className='cursor-pointer' key={toastType} onClick={() => deleteToast(id)}>
+      <div 
+        className='cursor-pointer' 
+        key={toastType} 
+        onClick={() => deleteToast(id)}
+      >
         {selectToastType()}
       </div>
   )

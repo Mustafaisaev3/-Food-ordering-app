@@ -1,8 +1,7 @@
-export function fadeInTop (duration:number = 0.5) {
+export function fadeInTop (duration:number = 0.2) {
   return {
     from: { 
-      position: 'relative',
-      top: "50px",
+      y: "50px",
       opacity: 0,
       transition: {
         type: 'easeInOut',
@@ -10,8 +9,7 @@ export function fadeInTop (duration:number = 0.5) {
       } 
     },
     to: { 
-      position: 'relative',
-      top: "0",
+      y: "0",
       opacity: 1,
       transition: {
         type: 'easeInOut',

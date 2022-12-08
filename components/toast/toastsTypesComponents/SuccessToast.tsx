@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import React from 'react'
 import {BsCheckCircle} from 'react-icons/bs'
+import { fadeInLeft } from '../../../utils/motion/fade-in-left'
 import { fadeInRight } from '../../../utils/motion/fade-in-right'
 
 type SuccesToastType = {
@@ -15,7 +16,7 @@ const SuccesToast = ({id, text}: SuccesToastType) => {
         animate='to'
         exit='from'
         key='success'
-        variants={fadeInRight(0.50)}
+        variants={fadeInLeft()}
         className={`p-[15px] w-auto text-sm mb-5 rounded-lg  text-white bg-green-500 flex items-center justify-between`}
       >
         <div>{text}</div>

@@ -2,7 +2,7 @@ import { useEffect, RefObject } from 'react'
 
 type Event = MouseEvent | TouchEvent
 
-export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
+export default function useOnDropdownClickOutside<T extends HTMLElement = HTMLElement>(
   InnerRef: RefObject<T>,
   handler: (event: Event) => void,
 ) {
