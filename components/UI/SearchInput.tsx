@@ -26,7 +26,7 @@ const SearchInput = ({name, id, onBlur, onChange, value, label, classes, rightIc
     }
 
     return (
-        <div className={`relative w-full ${classes} rounded-[5px] flex p-[10px] text-white bg-[#2D303E]`}>
+        <div className={`relative w-full ${classes} rounded-[5px] flex items-center p-[10px] text-white bg-[#2D303E]`}>
             <div className='rightIcon pr-2'>
                 { leftIcon }
             </div>

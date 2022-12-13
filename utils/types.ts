@@ -10,6 +10,30 @@ export type ProductType = {
 
 export type OrderStatus = 'NEW' | 'PREPARATION' | 'DELIVERY' | 'DONE' | 'REJECTED'
 
+
+export const OrderStatusArr = [
+  {
+    title: 'NEW',
+    color: '#2dff2d58'
+  },
+  {
+    title: 'PREPARATION',
+    color: '#e62dff4d'
+  },
+  {
+    title: 'DELIVERY',
+    color: '#ffea2d48'
+  },
+  {
+    title: 'DONE',
+    color: '#2dd5ff54'
+  },
+  {
+    title: 'REJECTED',
+    color: '#ff4d4d43'
+  },
+]
+
 // export type OrderType = {
 //   items: ProductType[],
 //   total_price: number,
@@ -25,7 +49,7 @@ export type OrderType = {
   total_price: number,
   order_id: number,
   date: number,
-  status: OrderStatus,
+  status: OrderStatus | string,
   delivery: {
     isDelivery: boolean,
     deliveryPlaceTitle: string,

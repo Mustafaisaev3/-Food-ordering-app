@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon, BellIcon, OfficeBuildingIcon } from '@heroicons/react/outline'
 import {IoIosCreate} from 'react-icons/io'
 import {FiLogOut} from 'react-icons/fi'
+import {BsFillChatLeftDotsFill} from 'react-icons/bs'
 import MenuIconContainer from './MenuIconContainer'
 import { useDispatch } from 'react-redux'
 import { LogoutUser } from '../../store/ducks/auth/action'
@@ -53,7 +54,9 @@ function Sidebar() {
                 </Link>
             </MenuIconContainer>
             <MenuIconContainer>
-                <MailIcon color='white' className='h-[50px] w-[50px]' />
+                <Link href='/chat'>
+                    <BsFillChatLeftDotsFill color='white' className='h-[40px] w-[40px]' />
+                </Link>
             </MenuIconContainer>
             <MenuIconContainer>
                 <UserCircleIcon color='white' className='h-[50px] w-[50px]' />

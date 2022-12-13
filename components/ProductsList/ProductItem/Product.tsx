@@ -28,7 +28,7 @@ function Product({ data }: {data: ProductDataProps}) {
 
   return (
     <motion.div layout className='w-full h-auto flex justify-center' onClick={handlePopupView} id={`${data.id}`} onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-        <div className='w-[250px] h-[350px] relative cursor-pointer'>
+        <div className='w-full h-[350px] relative cursor-pointer'>
             <div className='absolute bottom-0 left-0 z-1 w-[100%] h-[80%] bg-[#252836] rounded-lg '>
             </div>
             <div className='w-[100%] h-[auto] flex flex-col items-center justify-center relative z-10'>
@@ -39,12 +39,6 @@ function Product({ data }: {data: ProductDataProps}) {
                     <h2 className='text-[white] text-center'>{data.title}</h2>
                     <div className='text-[white] my-[5px]'>$ {data.price}</div>
                     <p className='text-slate-400'>20 Bowls available</p>
-                    {/* <div className='flex justify-around items-center'>
-                        <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
-                        <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
-                        <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
-                        <div className='w-[20px] h-[20]  bg-slate-400 rounded'>X</div>
-                    </div> */}
                 </div>
             </div>
         </div>

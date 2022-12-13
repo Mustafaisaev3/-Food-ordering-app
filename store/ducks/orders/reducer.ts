@@ -32,7 +32,7 @@ export const orderReducer = (state = initialOrderState , action: OrdersActions) 
             break
 
         case OrdersActionsType.SET_ORDER_STATUS:
-            console.log('status')
+            console.log(action.payload)
             const filteredOrderArray = state.items.filter((e) => {
                 return e.order_id !== action.payload.id
             })

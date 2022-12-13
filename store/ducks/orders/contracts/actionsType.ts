@@ -32,7 +32,7 @@ export interface SetOrderStatusActionInterface extends Action<OrdersActionsType>
     type: OrdersActionsType.SET_ORDER_STATUS,
     payload: {
         id: number,
-        orderStatus: OrderStatus
+        orderStatus: OrderStatus | string
     }
 }
 
