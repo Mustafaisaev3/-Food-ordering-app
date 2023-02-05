@@ -7,12 +7,13 @@ import { useSelector } from 'react-redux'
 
 import drinks from '../../data/products/drinks'
 import { AnimatePresence } from 'framer-motion'
-import { selectCartItems } from '../../store/ducks/cart/selectors'
+import { selectCartItems, selectCartTotalpice } from '../../store/ducks/cart/selectors'
 
 function Cart() {
   const {closeDrawer} = useUI()
   const [isEmpty, setIsEmpty] = useState<boolean>(false)
   const cartItems = useSelector(selectCartItems)
+  const cartTotalPrice = useSelector(selectCartTotalpice)
   const [isCheckout, setIsCheckout] = useState(false)
   
 
@@ -49,7 +50,7 @@ function Cart() {
                             <div className='text-[20px] text-[white]'>Procced to Checkout</div>
                             <span className='ms-auto flex-shrink-0 -mt-0.5 py-0.5 text-[20px] text-white'>
                                 <span className='border-s border-[1px] border-white mr-[24px]'></span>
-                                25$
+                                {cartTotalPrice}$
                             </span>
                         </button>
                     </div>
@@ -66,7 +67,7 @@ function Cart() {
                             <div className='text-[20px] text-[white]'>Procced to Checkout</div>
                             <span className='ms-auto flex-shrink-0 -mt-0.5 py-0.5 text-[20px] text-white'>
                                 <span className='border-s border-[1px] border-white mr-[24px]'></span>
-                                25$
+                                {cartTotalPrice}$
                             </span>
                         </button>
                     </div>

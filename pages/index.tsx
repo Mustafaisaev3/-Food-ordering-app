@@ -14,9 +14,7 @@ const Home = () => {
   console.log(uiContext)
 
   return (
-    <div className='py-[24px]'>
-      <ProductsList />
-    </div>
+    <ProductsList></ProductsList>
   )
 }
 

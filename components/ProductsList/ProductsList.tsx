@@ -25,7 +25,7 @@ function ProductsList() {
 
   return (
     // <div className='flex justify-between flex-wrap gap-y-10 overflow-x-hidden py-[20px]'>
-    <div>
+    <div className='py-[20px]'>
         <MenuCategories setActive={setActiveCat} />
         {/* <motion.div layout className='grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10 py-[20px]'> */}
         <motion.div layout className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-3 lg:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8'>

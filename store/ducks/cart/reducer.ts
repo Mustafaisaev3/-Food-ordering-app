@@ -15,14 +15,16 @@ export const cartReducer = (state = initialState, action: CartActions) => {
         case CartActionsType.ADD_TO_CART:    
           console.log(action)
           item.quantity = action.quantity 
+          const newTotalPrice = state.totalprice + (item.quantity * item.price)
+          console.log(newTotalPrice, item.quantity , item.price)
 
           if (state.items.length > 0){
             let filteredItemsArr = state.items.filter((e) => {
                 return e.id != item.id
             })
-            return {...state, items: [...filteredItemsArr, item]}
+            return {...state, items: [...filteredItemsArr, item], totalprice: newTotalPrice}
           } else {
-            return {...state, items: [...state.items, item]}
+            return {...state, items: [...state.items, item], totalprice: newTotalPrice}
           };
 
         case CartActionsType.DELETE_FROM_CART:
@@ -36,7 +38,7 @@ export const cartReducer = (state = initialState, action: CartActions) => {
             return state
 
         case CartActionsType.CLEAR_CART:   
-            return {...state, items: []}
+            return {...state, items: [], totalprice: 0}
 
             // if (state.items.length > 0){
             //     let filteredItemsArr = state.items.filter((e) => {
