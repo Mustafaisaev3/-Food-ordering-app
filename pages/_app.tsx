@@ -21,19 +21,19 @@ function App ({ Component, pageProps }: AppProps) {
   const isUserAuth = useSelector(selectUserAuth)
   const router = useRouter()
 
-  useEffect(() => {
-     if(isUserAuth.isAuth){
-      router.push('/')
-    } else {
-      router.push('/login')
-     }
+  // useEffect(() => {
+  //    if(isUserAuth.isAuth){
+  //     router.push('/')
+  //   } else {
+  //     router.push('/login')
+  //    }
 
-  }, [isUserAuth])
+  // }, [isUserAuth])
 
   return (
     <Provider store={store}>
       <ManagedUIContext>
-        {
+        {/* {
           isUserAuth.isAuth 
           ?
           <Layout> 
@@ -45,7 +45,14 @@ function App ({ Component, pageProps }: AppProps) {
           </Layout> 
           :
           <Login />
-        }
+        } */}
+        <Layout> 
+          <Component {...pageProps} />
+          <ManagedModal/>
+          <ManagedConfirmationModal />
+          <ManagedDrawer />
+          <ToastList />
+        </Layout> 
       </ManagedUIContext>
     </Provider>
   ) 

@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import burgers from '../../data/products/burgers'
-import drinks from '../../data/products/drinks'
-import pizzas from '../../data/products/pizzas'
 import Product from './ProductsItem/Product'
 import AddProductItem from './ProductsItem/AddProductItem'
 import { selectProductsItems } from '../../store/ducks/products/selectors'
 import Header from './ProductManagementHeader/ProductManagementHeader'
+import Categories from '../../data/categories/category-list'
 import { BsSearch } from 'react-icons/bs'
+
 
 const ProductsGrid = () => {
   const products = useSelector(selectProductsItems)
   const [searchInputValue, setSearchInputValue] = useState('')
   const [productsState, setProductsState] = useState(products)
+  const [activeCategory, setActiveCategory] = useState(Categories[0])
 
 
   const handleSearchInput = (e: any) => {
@@ -20,19 +20,35 @@ const ProductsGrid = () => {
 
     setSearchInputValue(e.target.value)
 
-    const filteredState = products.filter((item) => {
+    const filteredState = productsState.filter((item) => {
       const productTitle = item.title.toLowerCase()
       return productTitle.includes(inputValue)
     })
+    // const filteredState = products.filter((item) => {
+    //   const productTitle = item.title.toLowerCase()
+    //   return productTitle.includes(inputValue)
+    // })
 
     setProductsState(filteredState)
   }
 
-  console.log(products)
+  useEffect(() => {
+    if(activeCategory) {
+      if(activeCategory.value == 'all'){
+        setProductsState(products)
+      } else {
+        const filteredProducts = products.filter((item: any) => {
+          return item.category == activeCategory.value
+        })
+  
+        setProductsState(filteredProducts)
+      }
+    }
+  }, [activeCategory])
     
   return (
     <div className='pt-[50px]'>
-      <Header />
+      <Header setActiveCategory={setActiveCategory} />
       <div className='w-[100%] pb-[30px] flex justify-center items-center'>
         <div className="search-input flex items-center rounded-[5px] w-[500px] bg-[#2D303E] p-[10px]">
             <BsSearch style={{marginRight: '10px'}} color={'white'}/>

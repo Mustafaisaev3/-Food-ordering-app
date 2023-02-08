@@ -31,7 +31,7 @@ const OrdersTabs = ({ordersViewType, setOrdersViewType}: any) => {
                 <HiViewBoards size={20} color={'#EA9769'} />
               </div>
             </div>
-            <ListBox 
+            {/* <ListBox 
               options={[
                 { name: "text-sorting-options", value: "options" },
                 { name: "text-newest", value: "newest" },
@@ -57,7 +57,7 @@ const OrdersTabs = ({ordersViewType, setOrdersViewType}: any) => {
                 { name: "text-price-low-high", value: "low-high" },
                 { name: "text-price-high-low", value: "high-low" },
               ]} 
-            />
+            /> */}
           </div>
         </div>
     </div>

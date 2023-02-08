@@ -203,9 +203,10 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                         {/* <div className='flex justify-between flex-col lg:flex-row md:gap-[10px] items-center pt-[10px]'> */}
                         <div className='flex flex-col pt-10 lg:flex-row space-y-4 lg:space-y-0'>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer bg-[#EA6969] rounded-lg w-full h-[50px]'>
+                                {/* <div className='text-[20px] text-[white]' >Checkout</div> */}
                                 <div className='text-[20px] text-[white]' onClick={() => {
                                     hundleSubmit(order)
-                                }}>Checkout</div>
+                                }} >Checkout</div>
                             </button>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer border-[1px] border-[#EA6969] rounded-lg w-full h-[50px] lg:ml-3'>
                                 <div className='text-[20px] text-[#EA6969]'>Cancel</div>

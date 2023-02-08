@@ -3,11 +3,12 @@ import { ProductsState } from "./contract/state"
 import pizzas from "../../../data/products/pizzas"
 import burgers from "../../../data/products/burgers"
 import drinks from "../../../data/products/drinks"
+import desserts from "../../../data/products/desserts"
 
 
 const initialProductsState: ProductsState = {
     // @ts-ignore
-    items: [...pizzas, ...burgers, ...drinks]
+    items: [...pizzas, ...burgers, ...drinks, ...desserts]
 }
 
 export const productsReducer = (state = initialProductsState, action: ProductsActions) => {

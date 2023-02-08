@@ -5,7 +5,8 @@ import useOnClickOutside from '../../utils/use-click-outside';
 type Option = {
     id?: string;
 	name: string;
-    value?: any
+    value?: any,
+    logo?: string
 };
 
 interface ListBoxInterface {
@@ -14,17 +15,17 @@ interface ListBoxInterface {
 }
 
 const ListBox = ({ options, onSelectOption, }: ListBoxInterface) => {
-  const [activeOptionsItemTitle, setActiveOptionsItemTitle] = useState(options[0].value)
+  const [activeOptionsItemTitle, setActiveOptionsItemTitle] = useState(options[0])
   const [openDropdown, setOpenDropdown] = useState(false)
 
   //Handle ouside click
   const optionsDropdownRef = useRef(null)
-  useOnClickOutside(optionsDropdownRef, () => setOpenDropdown(false))
+//   useOnClickOutside(optionsDropdownRef, () => setOpenDropdown(false))
 
   const handleSelectOption = (item: Option) => {
     if (item) {
-        onSelectOption(item)
-        setActiveOptionsItemTitle(item.value)
+        onSelectOption && onSelectOption(item)
+        setActiveOptionsItemTitle(item)
         setOpenDropdown(false)
     }
   }
@@ -32,7 +33,10 @@ const ListBox = ({ options, onSelectOption, }: ListBoxInterface) => {
   return (
     <div className='listbox-container relative'>
         <div className='listbox-header flex items-center justify-between px-3 py-2 bg-[#252836] rounded-md' onClick={() => setOpenDropdown(!openDropdown)}>
-            <div className='text-white pr-5'>{activeOptionsItemTitle}</div>
+            <div className='w-full min-w-[80px] flex items-center justify-between text-white pr-1'>
+                {activeOptionsItemTitle.value}
+                {activeOptionsItemTitle.logo && <img src={activeOptionsItemTitle.logo} className='w-[20px] h-[20px]'/>}
+            </div>
             <HiOutlineSelector
                 className="w-5 h-5 text-gray-400"
                 aria-hidden="true"
@@ -42,8 +46,9 @@ const ListBox = ({ options, onSelectOption, }: ListBoxInterface) => {
             <div ref={optionsDropdownRef} className='overflow-hidden absolute top-[45px] left-0 w-full h-auto bg-[#252836] rounded-md'>
                 <ul>
                     {options.map((item) => {
-                        return <li className='p-2 cursor-pointer hover:bg-[#2f313ac1] text-white' onClick={() => handleSelectOption(item)}>
+                        return <li className='flex justify-between p-2 cursor-pointer hover:bg-[#2f313ac1] text-white' onClick={() => handleSelectOption(item)}>
                             {item.value}
+                            {item.logo && <img src={item.logo} className='w-[20px] h-[20px]'/>}
                         </li>
                     })}
                 </ul>

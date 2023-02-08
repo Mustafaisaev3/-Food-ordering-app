@@ -39,11 +39,6 @@ function ProductsList() {
           
         })}
       </motion.div>
-      <div className='w-full h-auto flex items-center justify-center'>
-        <Link href='/orders'>
-          <button className='p-[20px] bg-amber-600 rounded-md text-white font-bold'>Load More</button>
-        </Link>
-      </div>
     </div>
 
   )
