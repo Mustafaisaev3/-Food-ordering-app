@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon, UserIcon } from '@heroicons/react/outline'
 import { motion } from 'framer-motion' 
 
@@ -14,6 +14,7 @@ import { fadeInTop } from '../../utils/motion/fade-in-top'
 import UserModal from '../UserModal/UserModal'
 import { useRouter } from 'next/router'
 import HeaderSearch from './HeaderSearch'
+import useOnClickOutside from '../../utils/use-click-outside'
 
 
 
@@ -23,6 +24,12 @@ function Header() {
   const [showUserModal, setShowUserModal] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState('')
   const router = useRouter()
+  
+  // Handle outside clicks
+  const notificationModalRef = useRef(null)
+  const userModalRef = useRef(null)
+  useOnClickOutside(notificationModalRef, null, () => setShowNotification(false))
+  useOnClickOutside(userModalRef, null, () => setShowUserModal(false))
 
   function handleDrawerView() {
     return openDrawer();
@@ -43,17 +50,9 @@ function Header() {
 
   return (
     <header className='w-[100%] h-[auto] flex items-center justify-between bg-[#252836] p-20px rounded-md'>
-        {/* <div className="user-info text-[white]">
-            <div className='text-[25px]'>Alex Gray</div>
-            <div className='text-[15px]'>Tusday, 28 June</div>
-        </div> */}
-        {/* <div className="search-input flex items-center rounded-[5px] w-[500px] bg-[#2D303E] p-[10px]">
-            <BsSearch style={{marginRight: '10px'}} color={'white'}/>
-            <input type="text" value={searchInputValue} onChange={(e) => setSearchInputValue(e.target.value)} onSubmit={(e) => onSearchInputSubmit(e)} className='w-full outline-none text-white bg-[#2D303E]' placeholder='Search food...'/>
-        </div> */}
         <HeaderSearch />
         <div className="user-ui mx-20px flex gap-5">
-            <div className='relative cursor-pointer' onClick={handleNotificationBtnClick}>
+            <div ref={notificationModalRef} className='relative cursor-pointer' onClick={handleNotificationBtnClick}>
                 <GoBell size={30} color={'white'} />
                 <Badge bg='green' textColor='white' content={2} />
                 {showNotification &&
@@ -74,7 +73,7 @@ function Header() {
                 <Badge bg='red' textColor='white' content={10} />
                 {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
-            <div className='relative cursor-pointer'>
+            <div ref={userModalRef} className='relative cursor-pointer'>
                 <div className='w-[30px] h-[30px] rounded-full bg-[#ffffffd9]' onClick={handleUserModalBtnClick}></div>
                 {showUserModal &&
                     <motion.div
@@ -87,7 +86,6 @@ function Header() {
                         <UserModal />
                     </motion.div>
                 }
-                {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
         </div>
     </header>

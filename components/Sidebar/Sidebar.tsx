@@ -48,16 +48,6 @@ function Sidebar() {
                     <ClockIcon color='white' className='h-[50px] w-[50px]' />
                 </Link>
             </MenuIconContainer>
-            <MenuIconContainer active={router.pathname == '/products-management' ? true : false} tooltip={'products management'}>
-                <Link href='/products-management'>
-                    <IoIosCreate color='white' className='h-[50px] w-[50px]' />
-                </Link>
-            </MenuIconContainer>
-            <MenuIconContainer active={router.pathname == '/departments' ? true : false} tooltip={'departments'}>
-                <Link href='/departments'>
-                    <OfficeBuildingIcon color='white' className='h-[50px] w-[50px]' />
-                </Link>
-            </MenuIconContainer>
             <MenuIconContainer active={router.pathname == '/chat' ? true : false} tooltip={'chat'}>
                 <Link href='/chat'>
                     <BsFillChatLeftDotsFill color='white' className='h-[40px] w-[40px]' />
@@ -66,6 +56,16 @@ function Sidebar() {
             <MenuIconContainer active={router.pathname == '/search' ? true : false} tooltip={'search'}>
                 <Link href='/search'>
                     <GoSearch color='white' className='h-[40px] w-[40px]' />
+                </Link>
+            </MenuIconContainer>
+            <MenuIconContainer active={router.pathname == '/products-management' ? true : false} tooltip={'products management'}>
+                <Link href='/products-management'>
+                    <IoIosCreate color='white' className='h-[50px] w-[50px]' />
+                </Link>
+            </MenuIconContainer>
+            <MenuIconContainer active={router.pathname == '/departments' ? true : false} tooltip={'departments'}>
+                <Link href='/departments'>
+                    <OfficeBuildingIcon color='white' className='h-[50px] w-[50px]' />
                 </Link>
             </MenuIconContainer>
             <MenuIconContainer>
