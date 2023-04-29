@@ -13,7 +13,7 @@ const ChatApp = () => {
   const [themeColor, setThemeColor] = useState('#2D303E')
 
   return (
-    <div className='w-full h-[700px] flex my-[50px] rounded-md bg-[#252836]'>
+    <div className='w-full h-[700px] flex my-[50px] rounded-md flex-col sm:flex-col md:flex-row gap-5'>
         <ChatList activeUser={activeUser} users={chatUsers} conversations={chatConversations} activeConversation={activeConversation} setActiveConversation={setActiveConversation} />
         <ChatContent activeUser={activeUser} themeColor={themeColor} activeConversation={activeConversation} />
         <ChatUserInfo activeUser={activeUser} themeColor={themeColor} setThemeColor={setThemeColor} />

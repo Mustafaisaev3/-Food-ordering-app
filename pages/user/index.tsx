@@ -27,8 +27,8 @@ const User = () => {
 
   return (
     <Box className='w-full h-full'>
-        <div className='w-full h-full grid grid-cols-3 gap-5'>
-            <div className='w-full h-auto col-span-1 rounded-md bg-[#252836]'>
+        <div className='w-full h-full grid sm:grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-3 md:gap-5' >
+            <div className='w-full h-auto sm:col-span-1 md:col-span-1 lg:col-span-1 rounded-md bg-[#252836]'>
               <div className='p-[28px]'>
                 <h2 className='text-[20px] text-white font-semibold'>User Profile</h2>
                 <div className='py-[20px] flex items-center gap-[20px] border-b-[1px] border-[#EA6969]'>
@@ -47,18 +47,18 @@ const User = () => {
                 </div>
               </div>
             </div>
-            <div className='w-full h-auto col-span-2 rounded-md bg-[#252836]'>
+            <div className='w-full h-auto sm:col-span-1 md:col-span-2 rounded-md bg-[#252836]'>
               <div className='p-[28px]'>
                 <h2 className='text-[20px] text-white font-semibold'>Edit Profile</h2>
                 <div className='w-full h-auto flex flex-col gap-4 pt-[20px]'>
-                  <div className='grid grid-cols-8 gap-4'>
-                    <div className='col-span-4'>
+                  <div className='grid sm:grid-cols-1 md:grid-cols-8 gap-4'>
+                    <div className='sm:col-span-1 md:col-span-4'>
                       <Input label='Company' onChange={(e) => setUserObj({...userObj, company: e.target.value})} value={userObj.company}/>
                     </div>
-                    <div className='col-span-2'>
+                    <div className='sm:col-span-1 md:col-span-2'>
                       <Input label='Username' onChange={(e) => setUserObj({...userObj, userName: e.target.value})} value={userObj.userName}/>
                     </div>
-                    <div className='col-span-2'>
+                    <div className='sm:col-span-1 md:col-span-2'>
                       <Input label='Email' onChange={(e) => setUserObj({...userObj, email: e.target.value})} value={userObj.email}/>
                     </div>
                   </div>

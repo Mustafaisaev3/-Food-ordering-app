@@ -39,6 +39,17 @@ module.exports = {
         'linear': 'linear-gradient(#EA9769, #EA6969)'
       }
     },
+    screens: {
+      'sm': '640px',
+
+      'md': '920px',
+
+      'lg': '1024px',
+
+      'xl': '1280px',
+
+      '2xl': '1536px',
+    }
   },
   plugins: [
     require('tailwindcss-textshadow'),

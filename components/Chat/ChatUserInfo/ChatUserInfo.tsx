@@ -62,7 +62,7 @@ const ChangeTheme = ({changeThemeColor, themeColor}: any) => {
 const ChatUserInfo = ({setThemeColor, themeColor, activeUser}: any) => {
 
   return (
-    <div className='min-w-[300px] w-[300px] h-full flex flex-col border-l-[0.3px] border-[#ffffff33]'>
+    <div className='min-w-[300px] w-[300px] h-full hidden flex-col rounded-md border-[#ffffff33] sm:hidden md:hidden lg:flex bg-[#252836]'>
         <div className='w-full h-auto py-8 flex flex-col items-center justify-center gap-2 border-b-[0.3px] border-[#ffffff33]'>
             <div className='min-w-[60px] h-[60px] rounded-full bg-[#218cff93] overflow-hidden'>
                 <img className='w-full h-full object-cover' src={`${activeUser.photo}`} />

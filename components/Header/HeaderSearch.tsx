@@ -41,7 +41,7 @@ const HeaderSearch = ({}) => {
         <BsSearch style={{marginRight: '10px'}} color={'white'}/>
         <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onFocus={() => setShowProductsList(true)} className='w-full outline-none text-white bg-[#2D303E]' placeholder='Search food...'/>
         {showProductsList ? (
-            <div className='w-full h-auto flex flex-col gap-4 rounded-[5px] bg-[#2D303E] p-[10px] absolute left-0 top-[105%] z-20'>
+            <div className='min-w-[300px] w-full h-auto flex flex-col gap-4 rounded-[5px] bg-[#2D303E] p-[10px] absolute left-0 top-[105%] z-20'>
                 {inputValue && products.slice(0,5).map((product) => {
                     return (
                         <div className='w-full h-auto flex items-center hover:bg-slate-700 rounded-[5px] py-1 px-2'>

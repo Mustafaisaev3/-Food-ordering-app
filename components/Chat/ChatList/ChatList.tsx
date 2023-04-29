@@ -8,8 +8,9 @@ const ChatList = ({users, conversations, activeConversation, setActiveConversati
   const handleConversationClickBtn = (conversation: any) => {
     setActiveConversation(conversation)
   }
+  
   return (
-    <div className='min-w-[350px] h-full flex flex-col border-r-[0.3px] border-[#ffffff33] overflow-y-hidden'>
+    <div className='min-w-[300px] max-w-[500px] min-h-[300px] w-full h-full flex flex-col rounded-md border-[#ffffff33] overflow-y-hidden bg-[#252836]'>
         <div className='chatlist__header w-full h-[80px] flex items-center p-4 border-b-[0.3px] border-[#ffffff33]'>
             <div className='min-w-[50px] h-[50px] rounded-full overflow-hidden'>
                 <img className='w-full h-full object-cover' src={`${activeUser.photo}`} />
@@ -17,7 +18,7 @@ const ChatList = ({users, conversations, activeConversation, setActiveConversati
             <SearchInput classes={'ml-3'} placeholder={'Search ...'} leftIcon={<BsSearch style={{marginRight: '10px'}} color={'white'}/>} />
         </div>
 
-        <div className='overflow-x-hidden overflow-y-auto '>
+        <div className=' overflow-x-hidden overflow-y-auto '>
             <div className='chatlist__chats p-5'>
                 <div className='w-full h-auto'>
                     <h2 className='text-white text-xl font-semibold'>Contacts</h2>

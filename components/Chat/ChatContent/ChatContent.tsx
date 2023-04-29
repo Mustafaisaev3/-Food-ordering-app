@@ -34,7 +34,7 @@ const ChatContent = ({ themeColor, activeConversation, activeUser }: any) => {
   })
 
   return (
-    <div className='w-full h-full flex flex-col'>
+    <div className='w-full h-full flex flex-col bg-[#252836] rounded-md'>
         <div className='chatcontent__header w-full h-[80px] px-5 py-3 flex items-center border-b-[0.3px] border-[#ffffff33]'>
             <div className='notification-header w-auto flex items-center '>
                 <div className='w-[50px] h-[50px] rounded-full bg-[#218cff93] overflow-hidden'>
