@@ -16,7 +16,7 @@ const Department = ({department}: {department: Department}) => {
 
   return (
     <div className='w-full h-auto flex justify-center'>
-      <div className='w-[250px] h-[300px] flex flex-col rounded-md border-[1px] border-[#8b8b8b] overflow-hidden'>
+      <div className='w-full h-[300px] flex flex-col rounded-md border-[1px] border-[#8b8b8b] overflow-hidden'>
           <div className='grow flex items-center justify-center flex-col'>
           <Image src={department.img} height={150} width={150} />
           <div className='pt-5 text-white font-semibold'>{department.title}</div>
