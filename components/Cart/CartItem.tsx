@@ -10,7 +10,7 @@ import { addToCart, deleteFromCart, increaseCart } from '../../store/ducks/cart/
 
 
 function CartItem({item}: {item: ProductType}) {
-	const productCountInputRef = useRef(null)
+	const productCountInputRef = useRef<any>(null)
 	const dispatch = useDispatch()
 	const [productCount, setProductCount] = useState<number>(item.quantity)
 
