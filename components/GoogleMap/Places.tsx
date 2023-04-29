@@ -38,7 +38,7 @@ import { LatLngLiteral } from "../../utils/types";
     };
   
     return (
-      <Combobox onSelect={handleSelect} className={'w-full h-auto pt-5'}>
+      <Combobox onSelect={handleSelect} className={'w-full h-[70px] pt-5'}>
         <ComboboxInput
           value={value}
           onChange={(e) => {

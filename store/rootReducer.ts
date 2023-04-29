@@ -3,6 +3,7 @@ import { authReducer } from "./ducks/auth/reducer";
 import { cartReducer } from "./ducks/cart/reducer";
 import { chatReducer } from "./ducks/chat/reducer";
 import { departmentReducer } from "./ducks/departmens/reducer";
+import { userReducer } from "./ducks/user/reducer";
 
 import { orderReducer } from "./ducks/orders/reducer";
 import { productsReducer } from "./ducks/products/reducer";
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     products: productsReducer,
     departments: departmentReducer,
     auth: authReducer,
-    chat: chatReducer
+    chat: chatReducer,
+    user: userReducer,
 })

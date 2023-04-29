@@ -29,8 +29,8 @@ export default function ProductPopup() {
 	
 
 	return (
-		<div className="rounded-lg bg-[#393C49] w-[1000px] h-[600px]">
-			<div className="flex flex-row w-[100%] h-full overflow-hidden">
+		<div className="rounded-lg bg-[#393C49] w-full h-full sm:w-[1000px] sm:h-[600px]">
+			<div className="flex flex-col sm:flex-row w-[100%] h-full overflow-hidden">
 				<div className="flex items-center justify-center w-[70%] h-[100%] bg-[#252836]">
 					<div className="w-[300px] h-[300px]">
 						<motion.img
@@ -71,9 +71,9 @@ export default function ProductPopup() {
 							</div>
 						</div>
 					</div>
-					<div className="flex items-center justify-between">
+					<div className="flex flex-col md:flex-row gap-3 items-center justify-between">
 						<Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
-						<div className="w-[200px] h-[60px] p-[20px] text-white text-center rounded-md bg-[#EA6969] cursor-pointer" onClick={() => { 
+						<div className="w-full h-[60px] p-[20px] text-white text-center rounded-md bg-[#EA6969] cursor-pointer" onClick={() => { 
 							dispatch(addToCart({...data}, count))
 							addToast({id: Math.random(), toastType: 'success', text: `Товар добавлен в корзину: ${data.title}`})
 						}}>Add to cart</div>

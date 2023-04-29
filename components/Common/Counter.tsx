@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-const Counter = ({onIncrease, onDecrease, count}) => {
+const Counter = ({onIncrease, onDecrease, count}: any) => {
 
   return (
     <div className="flex items-center h-[60px] bg-[#252836] border-[#252836] rounded-md">

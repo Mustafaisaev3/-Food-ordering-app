@@ -28,6 +28,15 @@
         @apply w-[130px] h-[70px] rounded-md bg-[#7f7f7f00] border-[1px] border-[#9a9a9a82] text-white flex flex-col items-center justify-center
     }
 
+    /* Buttons */
+    .btn-primary {
+        @apply flex justify-center items-center p-[24px] cursor-pointer bg-[#EA6969] rounded-lg w-full h-[50px] text-white hover:bg-transparent hover:text-[#EA6969] hover:border-[1px] hover:border-[#EA6969]
+    }
+
+    .btn-secondary {
+        @apply flex justify-center items-center p-[24px] cursor-pointer border-[1px] border-[#EA6969] rounded-lg w-full h-[50px] text-[#EA6969] hover:bg-[#EA6969] hover:text-white
+    }
+
 }
 
 /* .status-bg-NEW{

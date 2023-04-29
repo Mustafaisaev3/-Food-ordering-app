@@ -29,7 +29,7 @@ function Sidebar() {
 
     console.log(router.pathname)
   return (
-    <div className='w-[150px] h-screen bg-[#252836] rounded-r-lg flex flex-col items-center justify-between'>
+    <div className='w-[150px] h-screen bg-[#252836] rounded-r-lg hidden flex-col items-center justify-between sm:hidden md:flex lg:flex '>
         <div className='flex flex-col items-center gap-2 pt-10'>
             <MenuIconContainer>
                 <Link href='/' className='w-full'>
@@ -69,7 +69,9 @@ function Sidebar() {
                 </Link>
             </MenuIconContainer>
             <MenuIconContainer>
-                <UserCircleIcon color='white' className='h-[50px] w-[50px]' />
+                <Link href='/user'>
+                    <UserCircleIcon color='white' className='h-[50px] w-[50px]' />
+                </Link>
             </MenuIconContainer>
             {/* <MenuIconContainer>
                 <BellIcon color='white' className='h-[50px] w-[50px]' />

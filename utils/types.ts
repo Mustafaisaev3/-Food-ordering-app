@@ -63,3 +63,20 @@ export type DirectionsResult = google.maps.DirectionsResult
 export type MapOptions = google.maps.MapOptions
 
 
+// User Type
+export type UserType = {
+  userName: string,
+  bio: string,
+  email: string,
+  company: string,
+  first_name: string,
+  last_name: string,
+  address: string,
+  city: string,
+  postal_code: string,
+  country: string,
+  about_me: string,
+  password: string,
+  website: string,
+}
+

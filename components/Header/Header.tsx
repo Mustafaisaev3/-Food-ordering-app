@@ -7,7 +7,7 @@ import { GoBell } from 'react-icons/go'
 import { BsSearch } from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
 import { Badge } from '../Badge'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { LogoutUser } from '../../store/ducks/auth/action'
 import NotificationContainer from '../Notification/NotificationContainer'
 import { fadeInTop } from '../../utils/motion/fade-in-top'
@@ -15,6 +15,7 @@ import UserModal from '../UserModal/UserModal'
 import { useRouter } from 'next/router'
 import HeaderSearch from './HeaderSearch'
 import useOnClickOutside from '../../utils/use-click-outside'
+import { selectCartItemsCount } from '../../store/ducks/cart/selectors'
 
 
 
@@ -24,6 +25,7 @@ function Header() {
   const [showUserModal, setShowUserModal] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState('')
   const router = useRouter()
+  const cartItemsCount = useSelector(selectCartItemsCount)
   
   // Handle outside clicks
   const notificationModalRef = useRef(null)
@@ -54,7 +56,7 @@ function Header() {
         <div className="user-ui mx-20px flex gap-5">
             <div ref={notificationModalRef} className='relative cursor-pointer' onClick={handleNotificationBtnClick}>
                 <GoBell size={30} color={'white'} />
-                <Badge bg='green' textColor='white' content={2} />
+                <Badge bg='green' textColor='white' content={5} />
                 {showNotification &&
                     <motion.div
                         className='absolute top-[40px] right-[30%] z-[100]'
@@ -70,7 +72,7 @@ function Header() {
             </div>
             <div className='relative cursor-pointer' onClick={handleDrawerView}>
                 <FiShoppingCart size={30} color={'white'} />
-                <Badge bg='red' textColor='white' content={10} />
+                {cartItemsCount ? <Badge bg='#EA6969' textColor='white' content={cartItemsCount} /> : null}
                 {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
             <div ref={userModalRef} className='relative cursor-pointer'>

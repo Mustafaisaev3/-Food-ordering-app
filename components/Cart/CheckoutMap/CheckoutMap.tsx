@@ -5,9 +5,9 @@ import { fadeInRight } from '../../../utils/motion/fade-in-right'
 import Map from '../../GoogleMap/Map'
 
 interface CheckoutMapInterface {
-  showMap: () => any, 
-  setDeliveryCoordinates: () => any, 
-  setDestinationAddressTitle: () => any
+  showMap: any, 
+  setDeliveryCoordinates: any, 
+  setDestinationAddressTitle: any
 }
 
 const CheckoutMap = ({showMap, setDeliveryCoordinates, setDestinationAddressTitle} : CheckoutMapInterface) => {

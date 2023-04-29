@@ -12,7 +12,7 @@ export type msgType = {
 
 export type sendMsgPayloadType = {
     message: msgType,
-        conversationId: number
+    conversationId: number
 }
 
 export interface SendMessageActionInterface extends Action<ChatActionsType> {

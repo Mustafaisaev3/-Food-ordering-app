@@ -13,10 +13,11 @@ import React, { useState, useRef, useEffect } from 'react'
 
 
 const SearchInput = ({name, id, onBlur, onChange, value, label, classes, rightIcon, leftIcon, ...rest}: any) => {
-    const inputRef = useRef(0)
+    const inputRef = useRef<HTMLInputElement>(null)
     const [inputFocused, setInputFocused] = useState(false)
+    
 
-    const onFocusOut = (e) => {
+    const onFocusOut = (e: any) => {
         onBlur ? onBlur(e) : null
         if (inputRef?.current?.value.length){
             setInputFocused(true)

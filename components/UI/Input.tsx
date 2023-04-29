@@ -1,20 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, InputHTMLAttributes } from 'react'
 import checkIsInputValue from '../../utils/checkIsInputEmpty'
 
-// type InputProps = {
-//     name?: string,
-//     id?: string,
-//     value?: string,
-//     label?: string,
-//     classes?: string,
-//     onBlur?: () => any,
-//     onChange?: () => any,
-// }
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
+    classes?: string,
+    onBlur?: any,
+    label?: string,
+    rightIcon?: any, 
+    leftIcon?: any
+}
 
 
 
-const Input = ({name, id, onBlur, onChange, value, label, classes, rightIcon, leftIcon, ...rest}: any) => {
-    const inputRef = useRef(0)
+const Input = ({name, id, onBlur, onChange, value, label, classes, rightIcon, leftIcon, ...rest}: InputProps) => {
+    const inputRef = useRef<HTMLInputElement>(null)
     const [inputFocused, setInputFocused] = useState(false)
 
     // const checkIsInputEmpty = () => {
@@ -25,13 +23,13 @@ const Input = ({name, id, onBlur, onChange, value, label, classes, rightIcon, le
     //     }
     // }
 
-    const onFocusOut = (e) => {
+    const onFocusOut = (e: any) => {
         onBlur ? onBlur(e) : null
-        checkIsInputValue(inputRef?.current?.value, setInputFocused)
+        checkIsInputValue(inputRef.current?.value!, setInputFocused)
     }
 
     useEffect(() => {
-        checkIsInputValue(inputRef?.current?.value, setInputFocused)
+        checkIsInputValue(inputRef.current?.value!, setInputFocused)
     }, [])
 
     return (

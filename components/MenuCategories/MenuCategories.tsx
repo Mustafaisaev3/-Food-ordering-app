@@ -25,13 +25,16 @@ function MenuCategories ({setActive}: {setActive: any}) {
     }, [activeCat])
 
     return <div className='py-[24px]'>
-        <div className='text-white text-[40px] py-[15px]'>Menu Categories</div>
+        <div className='text-white text-[25px] py-[15px] md:text-[40px]'>Menu Categories</div>
         <div className='flex'>
         {categoryList.map((e) => {
-            return <MenuCategoriesItem activeCategory={setActiveCat} category={e.name} isActive={activeCat==e.name}>
-                <Image src={e.logo} width={50} height={50} className='color-white'/>
-                <div className='text-white py-[8px]'>{e.name}</div>
-            </MenuCategoriesItem>
+            return (
+                <MenuCategoriesItem activeCategory={setActiveCat} category={e.name} isActive={activeCat==e.name}>
+                    {/* <Image src={e.logo} width={50} height={50} className='color-white'/> */}
+                    <img src={e.logo} className='color-white w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]'/>
+                    <div className='text-white py-[8px] text-xs sm:text-[18px]'>{e.name}</div>
+                </MenuCategoriesItem>
+            )       
         })}
         </div>
 

@@ -9,6 +9,7 @@ const initialState: CartState = {
 }
 
 export const cartReducer = (state = initialState, action: CartActions) => {
+    // @ts-ignore
     const item = action.item
 
     switch(action.type) {

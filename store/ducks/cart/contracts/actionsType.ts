@@ -27,7 +27,7 @@ export interface DeleteFromCartActionInterface extends Action<CartActionsType>{
 }
 
 export interface ClearCartActionInterface extends Action<CartActionsType>{
-    type: CartActionsType.CLEAR_CART
+    type: CartActionsType.CLEAR_CART,
 }
 
 

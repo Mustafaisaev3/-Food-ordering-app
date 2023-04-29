@@ -11,6 +11,7 @@ import CheckoutMap from '../CheckoutMap/CheckoutMap'
 import { clearCart } from '../../../store/ducks/cart/action'
 import { useUI } from '../../../contexts/ui.context'
 import { CheckoutSchema } from '../../../schemas/CheckoutSchema'
+import { selectCartItems } from '../../../store/ducks/cart/selectors'
 
 // React Icons
 import { BsCreditCardFill } from 'react-icons/bs'
@@ -25,33 +26,6 @@ type CheckoutProps = {
     closeCheckout: (value: boolean) => void
 }
 
-type PaymantMethodTypes = 'CreditCard' | 'Cash' | 'PayPall'
-
-const PaymantMethods = [
-    {   
-        title: 'Credit Card',
-        type: 'CreditCard',
-        component: <BsCreditCardFill size={20} color={'white'} />,
-    },
-    {   
-        title: 'Cash',
-        type: 'Cash',
-        component: <GiWallet size={20} color={'white'} />,
-    },
-    {   
-        title: 'PayPall',
-        type: 'PayPall',
-        component: <RiPaypalLine size={20} color={'white'} />,
-    },
-]
-
-const PaymentComponent = (payment, active) => {
-    return <div className='payment active '>
-        {payment.component}
-        {payment.title}
-    </div>
-}
-
 const Checkout = ({closeCheckout}: CheckoutProps) => {
   const { closeDrawer, addToast } = useUI()
   const [deliveryCoordinates, setDeliveryCoordinates] = useState()
@@ -60,18 +34,39 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
   const [showDelivery, setShowDelivery] = useState(false)
   const [showMap, setShowMap] = useState(false)
 
-  const [paymentMethod, setPaymentMethod] = useState<PaymantMethodTypes>('CreditCard')
+  const cartItems = useSelector(selectCartItems)
+  const dispatch = useDispatch()
+
+  const order: OrderType = {
+    items: cartItems,
+    total_price: 200,
+    order_id: new Date().getTime(),
+    date: new Date().getTime(),
+    status: 'NEW',
+    delivery: {
+        isDelivery: deliveryCoordinates ? true : false,
+        deliveryPlaceTitle: destinationAddressTitle,
+        deliveryCoordinates: deliveryCoordinates ? deliveryCoordinates : undefined,
+    },
+  }
+
+  const hundleSubmit = (order: OrderType) => {
+    dispatch(addOrder(order))
+    closeDrawer()
+    dispatch(clearCart())
+    addToast({id: Math.random(), toastType: 'success', text: 'Заказ оформлен'})
+  }
 
   const {values, touched, errors, handleSubmit, handleBlur, getFieldProps, handleChange} = useFormik({
-      initialValues: {
-        cardholder: '',
-        cardNumber: '',
-        expirationDate: '',
-        CVV: '',
-      },
-      onSubmit(values) {
-        console.log(values)
-      },
+    initialValues: {
+      cardholder: '',
+      cardNumber: '',
+      expirationDate: '',
+      CVV: '',
+    },
+    onSubmit(values) {
+        hundleSubmit(order)
+    },
     //   validate (values) {
     //     let errors = {
     //         cardholder: '',
@@ -95,40 +90,8 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
 
     //     return errors
     //   },
-      validationSchema: CheckoutSchema
-  })
-
-  const cartItems = useSelector((state) => state.cart.items)
-  const dispatch = useDispatch()
-
-  const order: OrderType = {
-    items: cartItems,
-    total_price: 200,
-    order_id: new Date().getTime(),
-    date: new Date().getTime(),
-    status: 'NEW',
-    delivery: {
-        isDelivery: deliveryCoordinates ? true : false,
-        deliveryPlaceTitle: destinationAddressTitle,
-        deliveryCoordinates: deliveryCoordinates ? deliveryCoordinates : undefined,
-    },
-  }
-//   const order: OrderType = {
-//     items: cartItems,
-//     total_price: 200,
-//     order_id: new Date().getTime(),
-//     date: new Date().getTime(),
-//     status: 'new',
-//     delivery: deliveryCoordinates ? true : false,
-//     deliveryCoordinates: deliveryCoordinates ? deliveryCoordinates : undefined,
-//   }
-
-  const hundleSubmit = (order: OrderType) => {
-    dispatch(addOrder(order))
-    closeDrawer()
-    dispatch(clearCart())
-    addToast({id: Math.random(), toastType: 'success', text: 'Заказ оформлен'})
-  }
+        validationSchema: CheckoutSchema
+    })
 
   return (
     <motion.div
@@ -191,9 +154,6 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                                             <Input id='map' name='Map' label='Map' value={order.delivery.deliveryPlaceTitle} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} rightIcon={<BiCurrentLocation size={20}  color={'#EA6969'} />}  leftIcon={<BiMapAlt size={20}  color={'#EA6969'} />}/>
                                             {/* {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null} */}
                                         </div>
-                                        {/* <div className='flex flex-col'>
-                                            <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
-                                        </div> */}
                                     </div>
                                 </div>
                                 <Switch switchStatus={showDelivery} setSwicthSatus={setShowDelivery} />
@@ -204,9 +164,10 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                         <div className='flex flex-col pt-10 lg:flex-row space-y-4 lg:space-y-0'>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer bg-[#EA6969] rounded-lg w-full h-[50px]'>
                                 {/* <div className='text-[20px] text-[white]' >Checkout</div> */}
-                                <div className='text-[20px] text-[white]' onClick={() => {
+                                <button type='submit' className='text-[20px] text-[white]' >Checkout</button>
+                                {/* <div className='text-[20px] text-[white]' onClick={() => {
                                     hundleSubmit(order)
-                                }} >Checkout</div>
+                                }} >Checkout</div> */}
                             </button>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer border-[1px] border-[#EA6969] rounded-lg w-full h-[50px] lg:ml-3'>
                                 <div className='text-[20px] text-[#EA6969]'>Cancel</div>

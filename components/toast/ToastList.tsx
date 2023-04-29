@@ -14,7 +14,7 @@ const ToastList = () => {
         {newToastList.length 
         ? 
             <Portal>
-                <div className='fixed right-3 top-3 z-[1000]'>          
+                <div className='fixed right-5 top-3 z-[1000]'>          
                     {newToastList.map((e) => {
                         return <Toast id={e.id} text={e.text} toastType={e.toastType}/>
                     })}

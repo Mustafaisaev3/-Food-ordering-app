@@ -25,6 +25,6 @@ export const deleteFromCart = (item: ProductType): DeleteFromCartActionInterface
 
 export const clearCart = (): ClearCartActionInterface => {
     return {
-        type: CartActionsType.CLEAR_CART,
+        type: CartActionsType.CLEAR_CART
     }
 }
