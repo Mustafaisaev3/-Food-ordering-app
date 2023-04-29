@@ -2,7 +2,7 @@ import React from 'react'
 
 type SwitchType = {
     switchStatus: boolean,
-    setSwicthSatus: () => any
+    setSwicthSatus: any
 }
 
 const Switch = ({switchStatus, setSwicthSatus}: SwitchType) => {

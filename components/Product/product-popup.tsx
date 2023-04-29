@@ -26,8 +26,12 @@ export default function ProductPopup() {
 	const onDecrease = () => {
 		setCount(count - 1)
 	}
-	
 
+	const handleAddToCartBtn = () => {
+		dispatch(addToCart({...data}, count))
+		addToast({id: Math.random(), toastType: 'success', text: `Товар добавлен в корзину: ${data.title}`})
+	}
+	
 	return (
 		<div className="rounded-lg bg-[#393C49] w-full h-full sm:w-[1000px] sm:h-[600px]">
 			<div className="flex flex-col sm:flex-row w-[100%] h-full overflow-hidden">
@@ -36,7 +40,9 @@ export default function ProductPopup() {
 						<motion.img
 							src={data.img}
 							className="lg:object-cover"
+							// @ts-ignore
 							initial={animationVariants[size].from}
+							// @ts-ignore
 							animate={animationVariants[size].to}
 						/>
 					</div>
@@ -73,10 +79,7 @@ export default function ProductPopup() {
 					</div>
 					<div className="flex flex-col md:flex-row gap-3 items-center justify-between">
 						<Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
-						<div className="w-full h-[60px] p-[20px] text-white text-center rounded-md bg-[#EA6969] cursor-pointer" onClick={() => { 
-							dispatch(addToCart({...data}, count))
-							addToast({id: Math.random(), toastType: 'success', text: `Товар добавлен в корзину: ${data.title}`})
-						}}>Add to cart</div>
+						<div className="w-full h-[60px] p-[20px] text-white text-center rounded-md bg-[#EA6969] cursor-pointer" onClick={handleAddToCartBtn}>Add to cart</div>
 					</div>
 					{/* <div className="p-[20px] mx-[20px] bg-white rounded-md cursor-pointer" onClick={() => setSize('s')}>s</div>
 					<div className="p-[20px] mx-[20px] bg-white rounded-md cursor-pointer" onClick={() => setSize('m')}>m</div>

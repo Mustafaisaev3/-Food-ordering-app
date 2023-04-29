@@ -1,5 +1,5 @@
 export const animationVariants = {
-    's': {
+    s: {
         from: { 
             scale: 1,
             transition: {
@@ -15,7 +15,7 @@ export const animationVariants = {
             } 
         },
     },
-    'm': {
+    m: {
         from: { 
             scale: 1,
             transition: {
@@ -31,7 +31,7 @@ export const animationVariants = {
             } 
         },
     },
-    'l': {
+    l: {
         from: { 
             scale: 1,
             transition: {

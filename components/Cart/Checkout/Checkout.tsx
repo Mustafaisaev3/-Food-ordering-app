@@ -50,7 +50,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
     },
   }
 
-  const hundleSubmit = (order: OrderType) => {
+  const hundleSubmit = (order: any) => {
     dispatch(addOrder(order))
     closeDrawer()
     dispatch(clearCart())
@@ -140,7 +140,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                                         {touched.expirationDate && errors.expirationDate ? <div className='text-[red]'>{errors.expirationDate}</div> : null}
                                     </div>
                                     <div className='lg:ml-3'>
-                                        <Input id='CVV' maxlength={3} type={"password"} {...getFieldProps('CVV')} label='CVV' classes={`w-full ${touched.CVV && errors.CVV ? 'border-[1px] border-red-600' : ''}`} />
+                                        <Input id='CVV' maxLength={3} type={"password"} {...getFieldProps('CVV')} label='CVV' classes={`w-full ${touched.CVV && errors.CVV ? 'border-[1px] border-red-600' : ''}`} />
                                         {touched.CVV && errors.CVV ? <div className='text-[red]'>{errors.CVV}</div> : null}
                                     </div>
                                 </div>
