@@ -82,7 +82,7 @@ const OrderPopup = () => {
         <div className='w-[800px] relative flex grow overflow-hidden'>
           <div className='w-1/2 flex flex-col justify-between p-3 overflow-hidden'>
             <div className='w-full h-[450px] overflow-y-scroll'>
-              {data.items.map((item) => {
+              {data.items.map((item: any) => {
                 // return <CartItem key={item.id} item={item}/>
                 return <ProductInOrder key={item.id} item={item} order_id={data.order_id}/>
               })}

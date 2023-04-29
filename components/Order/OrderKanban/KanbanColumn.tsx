@@ -25,28 +25,31 @@ const KanbanColumn = ({columnTitle, bg, orders, dragEnterStatus, setDragEnterSta
      
   function handleChangeOrderStatusBtnClick (e: any, id: number, orderStatus: any) {
     e.stopPropagation()
+    // @ts-ignore
     if(dragEnterStatus == draggedOrderItem.status){
         console.log('same')
         return 
     }
-    setConfirmationModalData({ data: {questionText: `Change order status to - ${dragEnterStatus}?`, perfomedFunction: () => dispatch(SetOrderStatus({id, orderStatus:dragEnterStatus}))} });
+    // @ts-ignore
+    setConfirmationModalData({ data: {questionText: `Change order status to - ${dragEnterStatus}?`, perfomedFunction: () => dispatch(SetOrderStatus({id, orderStatus: dragEnterStatus}))} });
     setConfirmationModalView("CONFIRMATION_MODAL_VIEW");
     return openConfirmationModal();
   }
 
-  const handleDragEnter = (e) => {
+  const handleDragEnter = (e: any) => {
     e.stopPropagation()
     columnDraggedRef.current = true
     setDragEnterStatus(columnTitle)
   }
 
-  const handleDragLeave = (e) => {
+  const handleDragLeave = (e: any) => {
     e.stopPropagation()
     columnDraggedRef.current = false
   }
   
 
   return (
+    // @ts-ignore
     <div className={`bord min-w-[350px] min-h-[200px] h-auto rounded-md bg-[#2D303E] overflow-hidden ${columnDraggedRef.current ? 'bg-[#454a5f]': ''}`} onDragLeave={(e) => handleDragLeave(e)} onDragEnter={(e) => handleDragEnter(e)} onDragEnd={(e) => handleChangeOrderStatusBtnClick(e, draggedOrderItem.order_id, dragEnterStatus)}>
         <div className='header w-full p-5 bg-[#2dff2d58] text-white text-center' style={{backgroundColor: bg}}>
             {columnTitle}

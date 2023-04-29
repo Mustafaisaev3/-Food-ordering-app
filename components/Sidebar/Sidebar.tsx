@@ -73,9 +73,6 @@ function Sidebar() {
                     <UserCircleIcon color='white' className='h-[50px] w-[50px]' />
                 </Link>
             </MenuIconContainer>
-            {/* <MenuIconContainer>
-                <BellIcon color='white' className='h-[50px] w-[50px]' />
-            </MenuIconContainer> */}
         </div>
         <div className='pb-10'>
             <MenuIconContainer>

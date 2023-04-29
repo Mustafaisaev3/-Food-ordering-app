@@ -41,31 +41,5 @@ function MenuCategories ({setActive}: {setActive: any}) {
     </div>
 }
 
-// function MenuCategories() {
-//   return (
-//       <div className='py-[24px]'>
-//         <div className='text-white text-[40px] py-[15px]'>Menu Categories</div>
-//         <div className='flex'>
-//             <MenuCategoriesItem>
-//                 <GiHamburger color='white' className='h-[50px] w-[50px]' />
-//                 <div className='text-white py-[8px]'>burger</div>
-//             </MenuCategoriesItem>
-//             <MenuCategoriesItem>
-//                 <FaPizzaSlice color='white' className='h-[50px] w-[50px]' />
-//                 <div className='text-white py-[8px]'>pizza</div>
-//             </MenuCategoriesItem>
-//             <MenuCategoriesItem>
-//                 <Image src={'/assets/svg/png-drink.png'} width={50} height={50} className='color-white'/>
-//                 <div className='text-white py-[8px]'>drink</div>
-//                 {/* <Image src={'/assets/svg/beverage.svg'} width={20} height={20}/> */}
-//             </MenuCategoriesItem>
-//             <MenuCategoriesItem>
-//                 <MailIcon color='white' className='h-[50px] w-[50px]' />
-//             </MenuCategoriesItem>
-
-//         </div>
-//       </div>
-//   )
-// }
 
 export default MenuCategories

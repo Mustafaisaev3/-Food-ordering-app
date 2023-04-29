@@ -57,8 +57,8 @@ export const orderReducer = (state = initialOrderState , action: OrdersActions) 
             const targetAddOrder = state.items.filter((order) => {
                 return order.order_id === action.payload.id
             })
-            // console.log(targetOrder, 'target')
 
+            // @ts-ignore
             targetAddOrder[0].items = [...targetAddOrder[0].items, action.payload.product]
 
             return {

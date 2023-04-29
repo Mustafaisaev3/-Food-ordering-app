@@ -22,7 +22,7 @@ export const productsReducer = (state = initialProductsState, action: ProductsAc
             const productId = action.payload.id
 
             const filteredArr = state.items.filter((i) => {
-                return i.id != productId
+                return i.id != parseInt(productId)
             })
 
             // const updaitedProduct = state.items.filter((i) => {

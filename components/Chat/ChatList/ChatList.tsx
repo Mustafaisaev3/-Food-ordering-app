@@ -34,9 +34,6 @@ const ChatList = ({users, conversations, activeConversation, setActiveConversati
                             </div>
                         )
                     })}
-                    {/* <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                    <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                    <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div> */}
                 </div>
             </div>
 
@@ -58,55 +55,6 @@ const ChatList = ({users, conversations, activeConversation, setActiveConversati
                             </div>
                         )
                     })}
-                    {/* <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge</div>
-                        </div>
-                    </div>
-                    <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge</div>
-                        </div>
-                    </div>
-                    <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 overflow-hidden '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge sssssssssssssssss</div>
-                        </div>
-                    </div>
-                    <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 overflow-hidden '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge sssssssssssssssss</div>
-                        </div>
-                    </div>
-                    <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 overflow-hidden '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge sssssssssssssssss</div>
-                        </div>
-                    </div>
-                    <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 overflow-hidden '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge sssssssssssssssss</div>
-                        </div>
-                    </div>
-                    <div className='notification-body__item w-full flex items-center justify-between py-3 cursor-pointer hover:-translate-x-1 transition-all'>
-                        <div className='min-w-[40px] h-[40px] rounded-full bg-[#218cff93]'></div>
-                        <div className='h-[40px] grow px-3 overflow-hidden '>
-                            <div className='w-full text-base text-white whitespace-nowrap overflow-clip text-ellipsis'>Congratulation Flora! 🎉</div>
-                            <div className='w-full text-sm text-[#aeaeae9c] whitespace-nowrap overflow-hidden text-ellipsis'>Won the monthly best seller badge sssssssssssssssss</div>
-                        </div>
-                    </div> */}
                 </div>
             </div>  
         </div>

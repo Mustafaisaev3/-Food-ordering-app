@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { addProductToOrder } from '../../../../store/ducks/orders/actions'
 import { Product } from '../../../../store/ducks/products/contract/state'
 
-const OrderAddProductOptions = ({product, order_id}: {product: Product, order_id: number}) => {
+const OrderAddProductOptions = ({product, order_id}: {product: any, order_id: number}) => {
   const [showProductInfo, setShowProductInfo] = useState<boolean>(false)
   const dispatch = useDispatch()
   console.log(order_id, 'product id')

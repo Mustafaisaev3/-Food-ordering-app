@@ -16,7 +16,6 @@ const ChatContent = ({ themeColor, activeConversation, activeUser }: any) => {
   const dispatch = useDispatch()
 
   const handleEmojiPickerClick = (e: any) => {
-    console.log(e)
     setShowEmojiPicker(!showEmojiPicker)
   }
   const handleEmojiClick = (emojiObj: any, event: any) => {

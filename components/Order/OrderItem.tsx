@@ -88,9 +88,7 @@ const OrderItem = ({ order }: OrdersType) => {
             </div>
           </div>
           <div className='flex items-end justify-between w-full pt-[15px] rounded gap-1'>
-            {/* <div className='bg-[#2dff2d] cursor-pointer p-[5px] rounded relative'>
-              <RiCarFill size={20} />
-            </div> */}
+            {/* @ts-ignore */}
             {statusIconComponent[`${order.status}`]}
             {distance < 0 
                 ?

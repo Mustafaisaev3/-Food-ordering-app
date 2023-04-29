@@ -7,9 +7,6 @@ import UpdateProductPopup from "../../ProductsManagement/AddProductPopup/UpdateP
 import AddDepartmentPopup from "../../Departments/AddDepartmentPopup/AddDepartmentPopup";
 import UpdateDepartmentPopup from "../../Departments/AddDepartmentPopup/UpdateDepartment";
 
-
-
-// const ProductPopup = dynamic(() => import("../../Product/product-popup"));
 const ManagedModal: React.FC = () => {
 	const { displayModal, closeModal, modalView } = useUI();
 	return (

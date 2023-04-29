@@ -14,6 +14,7 @@ const ListBox = ({ title, onSelectOption, children }: ListBoxInterface) => {
 
   //Handle ouside click
   const optionsDropdownRef = useRef(null)
+  // @ts-ignore
   useOnClickOutside(optionsDropdownRef, () => setOpenDropdown(false))
 
 //   const handleSelectOption = (item: Option) => {
@@ -24,7 +25,7 @@ const ListBox = ({ title, onSelectOption, children }: ListBoxInterface) => {
 //     }
 //   }
 
-  const handleDroprdownTitleClick = (e) => {
+  const handleDroprdownTitleClick = (e: any) => {
     e.stopPropagation()
     setOpenDropdown(!openDropdown)
   }

@@ -1,11 +1,3 @@
-// export enum CategoriesItems {
-//     ALL = 'all',
-//     BURGER = 'burger',
-//     DRINK = 'drink',
-//     PIZZA = 'pizza',
-//     DESSERT = 'dessert'
-// }
-
 export default [
     {
         name: 'all',

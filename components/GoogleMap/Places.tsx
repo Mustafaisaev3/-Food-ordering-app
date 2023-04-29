@@ -12,7 +12,7 @@ import { LatLngLiteral } from "../../utils/types";
   
   type PlacesProps = {
     setDestination: (position: LatLngLiteral) => void;
-    setAddress?: (val: string) => any,
+    setAddress: (val: string) => any,
   };
   
  const Places = ({ setDestination, setAddress }: PlacesProps) =>  {

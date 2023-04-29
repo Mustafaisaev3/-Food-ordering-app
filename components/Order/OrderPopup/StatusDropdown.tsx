@@ -49,6 +49,7 @@ const StatusDropdown = ({order}: StatusDropdownInterface) => {
     <>
         <div ref={dropdownRootRef} onClick={(e) => handleDropdownClick(e)} className={'relative'}>
             <div className={`listbox-header w-[150px] h-[40px] flex items-center justify-between px-3 py-2 bg-[#34384b] rounded-md status-bg-${order.status}`} onClick={() => setOpenDropdow(!openDropdow)}>
+                {/* @ts-ignore */}
                 <div className={`text-[${OrderStatusColors[order.status.toLocaleUpperCase()]}]`}>{order.status.toLocaleUpperCase()}</div>
                 <HiOutlineSelector
                     className="w-5 h-5 text-gray-400"

@@ -34,35 +34,6 @@ const DepartmentsHeader = () => {
               />
             }
           </div>
-          {/* <div className='flex gap-2'>
-            <ListBox 
-              options={[
-                { name: "text-sorting-options", value: "options" },
-                { name: "text-newest", value: "newest" },
-                { name: "text-popularity", value: "popularity" },
-                { name: "text-price-low-high", value: "low-high" },
-                { name: "text-price-high-low", value: "high-low" },
-              ]} 
-            />
-            <ListBox 
-              options={[
-                { name: "text-sorting-options", value: "options" },
-                { name: "text-newest", value: "newest" },
-                { name: "text-popularity", value: "popularity" },
-                { name: "text-price-low-high", value: "low-high" },
-                { name: "text-price-high-low", value: "high-low" },
-              ]} 
-            />
-            <ListBox 
-              options={[
-                { name: "text-sorting-options", value: "options" },
-                { name: "text-newest", value: "newest" },
-                { name: "text-popularity", value: "popularity" },
-                { name: "text-price-low-high", value: "low-high" },
-                { name: "text-price-high-low", value: "high-low" },
-              ]} 
-            />
-          </div> */}
         </div>
     </div>
   )

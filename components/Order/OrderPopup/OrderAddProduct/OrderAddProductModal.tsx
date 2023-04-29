@@ -48,7 +48,6 @@ const OrderAddProductModal = ({setShow, order}: any) => {
             </div>
             <div className=''>
               <SearchInput classes='h-[40px]' value={searchInputValue} onChange={(e: any) => handleSearchInput(e)}/>
-              {/* <input type="text" value={searchInputValue} onChange={(e) => handleSearchInput(e)} className=' outline-none text-white bg-[#2D303E]' placeholder='Search food...'/> */}
             </div>
             <div>
               <Dropdown>

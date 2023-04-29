@@ -1,5 +1,5 @@
+// @ts-nocheck
 import React, { useContext, useReducer } from "react";
-
 
 export interface State {
   displaySidebar: boolean;

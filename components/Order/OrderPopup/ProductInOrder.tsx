@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import {ProductType} from '../../utils/types'
 
 import {IoIosCloseCircle} from 'react-icons/io'
 import {MdDeleteForever} from 'react-icons/md'
@@ -12,8 +11,9 @@ import { Product } from '../../../store/ducks/products/contract/state'
 
 
 function ProductInOrder({item, order_id}: {item: Product, order_id: number}) {
-	const productCountInputRef = useRef(null)
+	const productCountInputRef = useRef<HTMLInputElement>(null)
 	const dispatch = useDispatch()
+	// @ts-ignore
 	const [productCount, setProductCount] = useState<number>(item.quantity)
 
     const strProductId = String(item.id)
@@ -35,9 +35,9 @@ function ProductInOrder({item, order_id}: {item: Product, order_id: number}) {
 						</div>
 					</div>
 					<div className="w-[20%] flex justify-end">
-						<input ref={productCountInputRef} type="text" className='flex items-center rounded-[5px] p-[10px] outline-none text-white text-center bg-[#2D303E] w-[60px] h-full' onChange={() => setProductCount(parseInt(productCountInputRef?.current?.value))} value={productCount} placeholder='0'/>
+						<input ref={productCountInputRef} type="text" className='flex items-center rounded-[5px] p-[10px] outline-none text-white text-center bg-[#2D303E] w-[60px] h-full' onChange={() => setProductCount(parseInt(productCountInputRef.current?.value!))} value={productCount} placeholder='0'/>
 					</div>
-					<div className='w-[20%] text-[20px] text-white text-center'>$ {item.price * productCount}</div>
+					<div className='w-[20%] text-[20px] text-white text-center'>$ {parseInt(item.price) * productCount}</div>
 				</div>
 				<div className="pt-[10px] flex">
 					<div className='w-[80%]'>
