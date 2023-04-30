@@ -110,7 +110,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                     <HiOutlineArrowNarrowRight size={20} color={'white'}/>
                 </div>
             </div>
-            <div className='h-full p-7 grow'>
+            <div className='h-full p-7 flex-1'>
                 <div className='h-full w-full flex flex-col '>
                     <h2 className='text-[25px] text-white'>Payment Method</h2>
                     <div className='flex items-center pt-[20px] gap-2'>

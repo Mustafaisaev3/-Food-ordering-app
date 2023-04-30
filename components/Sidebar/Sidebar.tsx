@@ -27,7 +27,6 @@ function Sidebar() {
 		return openConfirmationModal();
     }
 
-    console.log(router.pathname)
   return (
     <div className='w-[150px] h-screen bg-[#252836] rounded-r-lg hidden flex-col items-center justify-between sm:hidden md:hidden lg:flex '>
         <div className='flex flex-col items-center gap-2 pt-10'>

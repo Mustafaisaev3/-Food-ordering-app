@@ -16,6 +16,7 @@ import Login from './login'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { selectUserAuth } from '../store/ducks/auth/selectors'
+import MobileMenu from '../components/MobileMenu/MobileMenu';
 
 function App ({ Component, pageProps }: AppProps) {
   const isUserAuth = useSelector(selectUserAuth)
@@ -42,6 +43,7 @@ function App ({ Component, pageProps }: AppProps) {
             <ManagedConfirmationModal />
             <ManagedDrawer />
             <ToastList />
+            <MobileMenu />
           </Layout> 
           :
           <Login />

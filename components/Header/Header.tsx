@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon, UserIcon } from '@heroicons/react/outline'
+import { FiMenu } from 'react-icons/fi'
 import { motion } from 'framer-motion' 
 
 import { useUI } from '../../contexts/ui.context'
@@ -20,7 +21,7 @@ import { selectCartItemsCount } from '../../store/ducks/cart/selectors'
 
 
 function Header() {
-  const { openDrawer } = useUI();
+  const { openDrawer, openMobileMenu } = useUI();
   const [showNotification, setShowNotification] = useState(false)
   const [showUserModal, setShowUserModal] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState('')
@@ -53,7 +54,7 @@ function Header() {
   return (
     <header className='w-[100%] h-[auto] flex items-center justify-between bg-[#252836] p-20px rounded-md'>
         <HeaderSearch />
-        <div className="user-ui mx-20px flex gap-5">
+        <div className="user-ui hidden sm:flex mx-20px  gap-5">
             <div ref={notificationModalRef} className='relative cursor-pointer' onClick={handleNotificationBtnClick}>
                 <GoBell size={30} color={'white'} />
                 <Badge bg='green' textColor='white' content={5} />
@@ -89,6 +90,14 @@ function Header() {
                     </motion.div>
                 }
             </div>
+        </div>
+        <div className='sm:hidden ml-5 cursor-pointer flex items-center gap-3'>
+          <FiMenu size={25} color={'white'} onClick={openMobileMenu} />
+          <div className='relative cursor-pointer' onClick={handleDrawerView}>
+            <FiShoppingCart size={25} color={'white'} />
+            {cartItemsCount ? <Badge bg='#EA6969' textColor='white' content={cartItemsCount} /> : null}
+              {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
+          </div>
         </div>
     </header>
   )
