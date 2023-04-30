@@ -1,12 +1,12 @@
 import React, { ButtonHTMLAttributes } from 'react'
 
 interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
-    btnType?: string,
+  btnType?: string,
 }
 
-const Button = (props: ButtonInterface) => {
+const Button = ({btnType, className, children, ...rest}: ButtonInterface) => {
   return (
-    <button {...props} className={`btn-${props.btnType} ${props.className}`}>{props.children}</button>
+    <button {...rest} className={btnType ? `btn-${btnType} ${className}` : `btn-primary ${className}`}>{children}</button>
   )
 }
 

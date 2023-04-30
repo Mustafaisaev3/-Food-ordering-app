@@ -2,6 +2,7 @@
 import React, { useContext, useReducer } from "react";
 
 export interface State {
+  displayMobileMenu: boolean;
   displaySidebar: boolean;
   displayFilter: boolean;
   displayModal: boolean;
@@ -19,6 +20,7 @@ export interface State {
 }
 
 const initialState = {
+  displayMobileMenu: true,
   displaySidebar: false,
   displayFilter: false,
   displayModal: false,
@@ -128,6 +130,12 @@ type Action =
       type: "DELETE_TOAST";
       id: number;
     }
+  | {
+      type: "OPEN_MOBILE_MENU";
+    }
+  | {
+      type: "CLOSE_MOBILE_MENU";
+    }
 
 type MODAL_VIEWS =
   | "SIGN_UP_VIEW"
@@ -232,6 +240,18 @@ function uiReducer(state: State, action: Action) {
         displayModal: false,
       };
     }
+    case "OPEN_MOBILE_MENU": {
+      return {
+        ...state,
+        displayMobileMenu: true,
+      };
+    }
+    case "CLOSE_MOBILE_MENU": {
+      return {
+        ...state,
+        displayMobileMenu: false,
+      };
+    }
     case "SET_MODAL_VIEW": {
       return {
         ...state,
@@ -325,6 +345,9 @@ export const UIProvider: React.FC = (props) => {
   const openFilter = () => dispatch({ type: "OPEN_FILTER" });
   const closeFilter = () => dispatch({ type: "CLOSE_FILTER" });
 
+  const openMobileMenu = () => dispatch({ type: "OPEN_MOBILE_MENU" });
+  const closeMobileMenu = () => dispatch({ type: "CLOSE_MOBILE_MENU" });
+
   const openModal = () => dispatch({ type: "OPEN_MODAL" });
   const closeModal = () => dispatch({ type: "CLOSE_MODAL" });
   const openSearch = () => dispatch({ type: "OPEN_SEARCH" });
@@ -368,6 +391,8 @@ export const UIProvider: React.FC = (props) => {
       closeFilter,
       openModal,
       closeModal,
+      openMobileMenu,
+      closeMobileMenu,
       openDrawer,
       closeDrawer,
       openSearch,

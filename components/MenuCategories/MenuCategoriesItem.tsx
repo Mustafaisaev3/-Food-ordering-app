@@ -9,7 +9,7 @@ type MenuCategoriesItemType = {
 
 function MenuCategoriesItem({children, activeCategory, category, isActive}: MenuCategoriesItemType) {
     return (
-        <div onClick={() => { activeCategory(category)}} className={`rounded-lg flex flex-col items-center justify-center w-full h-[80px] sm:w-[80px] sm:h-[120px] bg-[#252836] cursor-pointer mr-[20px] ${isActive ? 'hover:bg-slate-300 bg-gradient-to-t from-[#EA9769] to-[#EA6969]' : 'hover:bg-slate-700'}`}>
+        <div onClick={() => { activeCategory(category)}} className={`rounded-lg flex flex-col items-center justify-center min-w-[60px] h-[80px] sm:w-[80px] sm:h-[120px] bg-[#252836] cursor-pointer mr-[20px] ${isActive ? 'hover:bg-slate-300 bg-gradient-to-t from-[#EA9769] to-[#EA6969]' : 'hover:bg-slate-700'}`}>
           {children}
         </div>
     ) 

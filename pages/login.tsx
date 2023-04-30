@@ -20,9 +20,6 @@ const Login = () => {
       if (email === loginUserData.email && password === loginUserData.password){
         localStorage.setItem('userToken','123456')
         dispatch(LoginUser('123456'))
-        console.log('Its work)')
-      } else {
-        console.log('Wrond data')
       }
   }
 
