@@ -15,7 +15,7 @@ const initialState: UserState = {
         postal_code: '',
         country: 'Ukraine',
         about_me: 'It is me)',
-        password: 'test',
+        password: 'test123',
         website: 'user.com',
     },
     status: LoadingStatus.NEVER
