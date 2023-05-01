@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import {HomeIcon, ClockIcon, MailIcon, UserCircleIcon, BellIcon, OfficeBuildingIcon } from '@heroicons/react/outline'
-import {IoIosCreate} from 'react-icons/io'
+import {IoIosCreate, IoMdChatboxes} from 'react-icons/io'
 import {FiLogOut} from 'react-icons/fi'
 import {BsFillChatLeftDotsFill} from 'react-icons/bs'
 import MenuIconContainer from './MenuIconContainer'
@@ -19,7 +19,7 @@ function Sidebar() {
 
     const handleLogoutClick = () => {
         function Logout () {
-            localStorage.removeItem('userToken')
+            localStorage.removeItem('pizzaAppUserTocken')
             dispatch(LogoutUser())
         }
 
@@ -49,7 +49,7 @@ function Sidebar() {
             </MenuIconContainer>
             <MenuIconContainer active={router.pathname == '/chat' ? true : false} tooltip={'chat'}>
                 <Link href='/chat'>
-                    <BsFillChatLeftDotsFill color='white' className='h-[40px] w-[40px]' />
+                    <IoMdChatboxes color='white' className='h-[50px] w-[50px]' />
                 </Link>
             </MenuIconContainer>
             <MenuIconContainer active={router.pathname == '/search' ? true : false} tooltip={'search'}>

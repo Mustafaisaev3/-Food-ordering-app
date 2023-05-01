@@ -20,9 +20,6 @@ const User = () => {
     dispatch(updateUser(userObj))
     addToast({id: Math.random(), toastType: 'success', text: 'Изменения сохраненны!'})
   }
-  const handleSaveUser = () => {
-    console.log(user)
-  }
 
 
   return (
@@ -93,7 +90,7 @@ const User = () => {
                   </div>
                 </div>
                 <div className='w-full mt-[20px] border-t-[1px] border-[#EA6969]'>
-                  <Button btnType='primary' onClick={handleSaveUser} className='mt-[30px]'>Update Profile</Button>
+                  <Button btnType='primary' onClick={handleSaveUserProfile} className='mt-[30px]'>Update Profile</Button>
                 </div>
               </div>
             </div>

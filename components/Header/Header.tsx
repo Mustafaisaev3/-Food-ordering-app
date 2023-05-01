@@ -54,8 +54,8 @@ function Header() {
   return (
     <header className='w-[100%] h-[auto] flex items-center justify-between bg-[#252836] p-20px rounded-md'>
         <HeaderSearch />
-        <div className="user-ui hidden sm:flex mx-20px  gap-5">
-            <div ref={notificationModalRef} className='relative cursor-pointer' onClick={handleNotificationBtnClick}>
+        <div className="user-ui flex mx-20px  gap-5">
+            <div ref={notificationModalRef} className='relative cursor-pointer  hidden sm:block' onClick={handleNotificationBtnClick}>
                 <GoBell size={30} color={'white'} />
                 <Badge bg='green' textColor='white' content={5} />
                 {showNotification &&
@@ -71,12 +71,12 @@ function Header() {
                 }
                 {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[green] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
-            <div className='relative cursor-pointer' onClick={handleDrawerView}>
+            <div className='relative cursor-pointer ' onClick={handleDrawerView}>
                 <FiShoppingCart size={30} color={'white'} />
                 {cartItemsCount ? <Badge bg='#EA6969' textColor='white' content={cartItemsCount} /> : null}
                 {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
             </div>
-            <div ref={userModalRef} className='relative cursor-pointer'>
+            <div ref={userModalRef} className='relative cursor-pointer hidden sm:block'>
                 <div className='w-[30px] h-[30px] rounded-full bg-[#ffffffd9]' onClick={handleUserModalBtnClick}></div>
                 {showUserModal &&
                     <motion.div
@@ -90,15 +90,16 @@ function Header() {
                     </motion.div>
                 }
             </div>
+            <div className='lg:hidden cursor-pointer flex items-center gap-3'>
+              <FiMenu size={25} color={'white'} onClick={openMobileMenu} />
+            </div>
         </div>
-        <div className='sm:hidden ml-5 cursor-pointer flex items-center gap-3'>
-          <FiMenu size={25} color={'white'} onClick={openMobileMenu} />
+        {/* <div className='sm:hidden ml-5 cursor-pointer flex items-center gap-3'>
           <div className='relative cursor-pointer' onClick={handleDrawerView}>
             <FiShoppingCart size={25} color={'white'} />
             {cartItemsCount ? <Badge bg='#EA6969' textColor='white' content={cartItemsCount} /> : null}
-              {/* <div className='absolute top-[-10px] right-[-5px] text-center text-[white] bg-[red] rounded-full leading-none w-5 h-5'>2</div> */}
           </div>
-        </div>
+        </div> */}
     </header>
   )
 }

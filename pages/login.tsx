@@ -18,19 +18,19 @@ const Login = () => {
 
   const handleLoginBtnClick = () => {
       if (email === loginUserData.email && password === loginUserData.password){
-        localStorage.setItem('userToken','123456')
+        localStorage.setItem('pizzaAppUserTocken','123456')
         dispatch(LoginUser('123456'))
       }
   }
 
   return (
     <div className='w-full h-screen flex items-center justify-center bg-[#252836] relative'>
-        <Image sizes='100vw' layout='fill' src={'/assets/images/pizza_background.jpg'} />
+        <Image sizes='100vw' layout='fill' src={'/assets/images/pizza_background.jpg'} className='object-cover' />
         <div className='w-[500px] h-auto p-[30px] rounded-md bg-[#252836] z-10'>
             <div className='w-full h-full flex flex-col justify-start'>
                 <div className="text-center mb-2 pt-2.5">
                     <div className='text-[#EA6969] text-[35px] font-bold'>
-                        Logo
+                        Login
                     </div>
                     <p className="text-white text-sm md:text-base text-body mt-2 mb-2 sm:mb-3">
                         Login with your email & password

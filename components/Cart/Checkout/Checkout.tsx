@@ -67,30 +67,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
     onSubmit(values) {
         hundleSubmit(order)
     },
-    //   validate (values) {
-    //     let errors = {
-    //         cardholder: '',
-    //         cardNumber: '',
-    //         expirationDate: '',
-    //         CVV: '',
-    //     }
-
-    //     if(!values.cardholder.length){
-    //         errors.cardholder = 'Card holder is empty!!!'
-    //     }
-    //     if(!values.cardNumber.length){
-    //         errors.cardNumber = 'Card Number is empty!!!'
-    //     }
-    //     if(!values.expirationDate.length){
-    //         errors.expirationDate = 'Expiration Date is empty!!!'
-    //     }
-    //     if(!values.CVV.length){
-    //         errors.CVV = 'CVV is empty!!!'
-    //     }
-
-    //     return errors
-    //   },
-        validationSchema: CheckoutSchema
+    validationSchema: CheckoutSchema
     })
 
   return (

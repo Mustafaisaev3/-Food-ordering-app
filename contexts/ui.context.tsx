@@ -20,7 +20,7 @@ export interface State {
 }
 
 const initialState = {
-  displayMobileMenu: true,
+  displayMobileMenu: false,
   displaySidebar: false,
   displayFilter: false,
   displayModal: false,

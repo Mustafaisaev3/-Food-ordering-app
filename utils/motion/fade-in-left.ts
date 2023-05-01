@@ -1,16 +1,32 @@
 export function fadeInLeft (duration:number = 0.3) {
+  // return {
+  //   from: { 
+  //     x: 200,
+  //     transition: {
+  //       type: 'spring',
+	// 			duration: duration,
+  //     } 
+  //   },
+  //   to: { 
+  //     x: 0,
+  //     transition: {
+  //       type: 'spring',
+	// 			duration: duration,
+  //     } 
+  //   },
+  // }
   return {
     from: { 
-      x: 200,
+      left: '-100%',
       transition: {
-        type: 'spring',
+        type: 'easeInOut',
 				duration: duration,
       } 
     },
     to: { 
-      x: 0,
+      left: 0,
       transition: {
-        type: 'spring',
+        type: 'easeInOut',
 				duration: duration,
       } 
     },

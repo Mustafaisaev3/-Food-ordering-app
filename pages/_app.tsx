@@ -1,35 +1,47 @@
 import '../styles/globals.css'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import type { AppProps } from 'next/app'
-import { AuthProvider} from '../hooks/useAuth'
+import { useRouter } from 'next/router'
 import { Layout } from '../layout/Layout'
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { store } from '../store/store'
 
+import ToastList from '../components/toast/ToastList'
+import ManagedConfirmationModal from '../components/UI/ConfirmationModal/managet-confirmation-modal'
+import MobileMenu from '../components/MobileMenu/MobileMenu';
+import Login from './login'
 
 import ManagedModal from '../components/UI/Modal/managet-modal'
 import ManagedDrawer from '../components/UI/Drawer/managed-drawer'
-
 import { ManagedUIContext } from '../contexts/ui.context'
-import { store } from '../store/store'
-import ToastList from '../components/toast/ToastList'
-import ManagedConfirmationModal from '../components/UI/ConfirmationModal/managet-confirmation-modal'
-import Login from './login'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { LoginUser } from '../store/ducks/auth/action';
 import { selectUserAuth } from '../store/ducks/auth/selectors'
-import MobileMenu from '../components/MobileMenu/MobileMenu';
+
 
 function App ({ Component, pageProps }: AppProps) {
+  const dispatch = useDispatch()
   const isUserAuth = useSelector(selectUserAuth)
   const router = useRouter()
 
-  useEffect(() => {
-     if(isUserAuth.isAuth){
+  useLayoutEffect(() => {
+    if(localStorage.getItem('pizzaAppUserTocken') === '123456') {
+      dispatch(LoginUser('123456'))
+      console.log(isUserAuth, 'lay')
       router.push('/')
     } else {
       router.push('/login')
-     }
+    }
+  }, [isUserAuth.isAuth])
 
-  }, [isUserAuth])
+  // useEffect(() => {
+  //   if(isUserAuth.isAuth){
+  //     router.push('/')
+  //   } else {
+  //     router.push('/login')
+  //    }
+  //    console.log(isUserAuth, 'eff')
+
+  // }, [isUserAuth.isAuth])
 
   return (
     <Provider store={store}>
@@ -48,13 +60,6 @@ function App ({ Component, pageProps }: AppProps) {
           :
           <Login />
         }
-        {/* <Layout> 
-          <Component {...pageProps} />
-          <ManagedModal/>
-          <ManagedConfirmationModal />
-          <ManagedDrawer />
-          <ToastList />
-        </Layout>  */}
       </ManagedUIContext>
     </Provider>
   ) 
