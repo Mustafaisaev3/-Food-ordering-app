@@ -10,7 +10,7 @@ const ChatList = ({users, conversations, activeConversation, setActiveConversati
   }
   
   return (
-    <div className='min-w-[300px] max-w-[500px] min-h-[300px] w-full h-full flex flex-col rounded-md border-[#ffffff33] overflow-y-hidden bg-[#252836]'>
+    <div className='min-w-[300px] md:max-w-[500px] min-h-[300px] w-full h-full flex flex-col rounded-md border-[#ffffff33] overflow-y-hidden bg-[#252836]'>
         <div className='chatlist__header w-full h-[80px] flex items-center p-4 border-b-[0.3px] border-[#ffffff33]'>
             <div className='min-w-[50px] h-[50px] rounded-full overflow-hidden'>
                 <img className='w-full h-full object-cover' src={`${activeUser.photo}`} />

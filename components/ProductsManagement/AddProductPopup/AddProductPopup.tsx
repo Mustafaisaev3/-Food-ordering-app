@@ -57,7 +57,7 @@ const AddProductPopup = () => {
     // console.log(formik)
 
   return (
-    <div className='w-[900px] h-auto flex flex-col rounded-md bg-[#252836]'>
+    <div className='w-auto md:w-[900px] lg:w-[900px] h-auto flex flex-col rounded-md bg-[#252836]'>
         <div className='text-white text-2xl py-4 px-5 border-b-[1px] border-b-[#EA9769]'>Add new product</div>
         <form onSubmit={formik.handleSubmit} className='flex flex-col grow'>
             <div className='grow w-full py-4 px-5'>

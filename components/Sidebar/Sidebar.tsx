@@ -32,7 +32,7 @@ function Sidebar() {
         <div className='flex flex-col items-center gap-2 pt-10'>
             <MenuIconContainer>
                 <Link href='/' className='w-full'>
-                    <div className='text-[30px] text-[white]'>
+                    <div className='text-[20px] text-[white]'>
                         LOGO
                     </div>
                 </Link>  

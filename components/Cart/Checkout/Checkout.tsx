@@ -80,15 +80,15 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
         className="lg:relative w-full lg:w-[450px] overflow-hidden z-50 absolute right-0 top-0 lg:block"
     >   
         {showMap && <CheckoutMap showMap={setShowMap} setDeliveryCoordinates={setDeliveryCoordinates} setDestinationAddressTitle={getDestinationAddressTitle} />}
-        <div className='flex flex-col justify-between w-full h-screen rounded-tl-lg rounded-bl-lg bg-[#252836] '>
-            <div className='flex justify-between items-center border-b border-gray-700' >
+        <div className='flex flex-col justify-between w-full h-full rounded-tl-lg rounded-bl-lg bg-[#252836] '>
+            <div className='h-[77px] flex justify-between items-center border-b border-gray-700' >
                 <div className='text-[25px] pl-[28px] text-[white]'>Paymant</div>
                 <div className='cursor-pointer p-[28px]' onClick={() =>closeCheckout(false)}>
                     <HiOutlineArrowNarrowRight size={20} color={'white'}/>
                 </div>
             </div>
-            <div className='h-full p-7 flex-1'>
-                <div className='h-full w-full flex flex-col '>
+            {/* <div className='p-7 flex-1'> */}
+                <div className='h-[calc(100vh-77px)] w-full flex flex-col p-7 overflow-hidden'>
                     <h2 className='text-[25px] text-white'>Payment Method</h2>
                     <div className='flex items-center pt-[20px] gap-2'>
                         <div className='payment active ' >
@@ -104,8 +104,8 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                             PayPall
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit} className='w-full h-full mt-7 flex flex-col justify-between '>
-                        <div className='flex flex-col'>
+                    <form onSubmit={handleSubmit} className='h-auto w-full mt-7 flex flex-col justify-between overflow-y-auto overflow-x-hidden'>
+                        <div className='flex flex-col flex-1'>
                             <div>
                                 <Input id='cardholder' name='cardholder' onBlur={handleBlur} label='Cardholder name' value={values.cardholder} onChange={handleChange} classes={touched.cardholder && errors.cardholder ? 'border-[1px] border-red-600' : ''} />
                                 {touched.cardholder && errors.cardholder ? <div className='text-[red]'>{errors.cardholder}</div> : null}
@@ -135,9 +135,8 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                                 </div>
                                 <Switch switchStatus={showDelivery} setSwicthSatus={setShowDelivery} />
                             </div>
-
                         </div>
-                        <div className='flex flex-col pt-10 lg:flex-row space-y-4 lg:space-y-0'>
+                        <div className='flex flex-row md:flex-col items-center pt-10 lg:flex-row gap-4'>
                             <button type='submit' className='flex justify-center items-center p-[24px] cursor-pointer bg-[#EA6969] rounded-lg w-full h-[50px]'>
                                 <button type='submit' className='text-[20px] text-[white]' >Checkout</button>
                             </button>
@@ -148,7 +147,7 @@ const Checkout = ({closeCheckout}: CheckoutProps) => {
                     </form>
                 </div>
                 
-            </div>
+            {/* </div> */}
         </div>
     </motion.div>
   )
